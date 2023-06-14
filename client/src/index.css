@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	font-family: 'Bauhaus 93', sans-serif;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+@media screen and (min-width: 480px) {
+	.card:nth-child(7n + 1) {
+		grid-column: auto/span 2;
+		grid-row: auto/span 2;
+	}
+}
+
+.light-gradient {
+	@apply bg-gradient-to-b from-[#855E5E] to-[#d0b6b6];
+}
+
+.footer-gradient {
+	@apply bg-gradient-to-t from-[#664848] to-[#825f5f];
+}
+
+.home-gradient {
+	@apply bg-gradient-to-b from-[#dbc3c3] to-[#855e5e];
+}
+
+.nav-border {
+	@apply border-b-4 border-solid border-[#af9595];
+}
+
+.footer-border {
+	@apply border-t-4 border-solid border-[#957171];
+}
+.nav-links {
+	@apply text-center border-l-4 border-solid border-[#af9595] h-full flex justify-center items-center md:text-[35px] text-[15px];
+}
+
+.gallery-pane {
+	@apply rounded-[15px] bg-[#ECE0E0];
+}
