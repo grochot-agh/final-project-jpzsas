@@ -35,7 +35,7 @@ const TrendingPane = () => {
 				</div>
 				<div className="flex flex-row items-center justify-center">
 					<IoPaperPlane className="text-[#ECE0E0] text-[20px] cursor-pointer" />
-					<p className="text-[#ECE0E0] text-[20px]">share</p>
+					<p className="text-[#ECE0E0] text-[15px]">share</p>
 				</div>
 			</div>
 		</div>

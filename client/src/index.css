@@ -42,3 +42,27 @@
 .gallery-pane {
 	@apply rounded-[15px] bg-[#ECE0E0];
 }
+
+.profile-dashboard {
+	@apply pb-3 pt-3 pl-8 border-b-2 border-solid border-[#af9595] cursor-pointer text-justify;
+}
+
+.profile-input {
+	@apply w-[400px] h-[40px] rounded-[10px] border-none outline-none mb-4 text-[20px];
+}
+
+@layer utilities {
+	.purple-glow {
+		text-shadow: 2px 4px 5px rgba(123, 39, 137, 0.5);
+		box-shadow: 2px 4px 5px rgba(123, 39, 137, 0.5);
+	}
+	.red-glow {
+		text-shadow: 2px 4px 5px rgba(173, 33, 33, 0.5);
+		box-shadow: 2px 4px 5px rgba(173, 33, 33, 0.5);
+	}
+
+	.cream-glow {
+		text-shadow: 2px 4px 5px rgba(236, 224, 224, 0.5);
+		box-shadow: 2px 4px 5px rgba(236, 224, 224, 0.5);
+	}
+}
