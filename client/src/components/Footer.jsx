@@ -5,7 +5,7 @@ import { WiMoonWaxingCrescent2 } from 'react-icons/wi';
 
 const Footer = () => {
 	return (
-		<footer className="overflow-hidden w-full h-[80px flex justify-between items-center footer-gradient footer-border sm:px-10 px-6 py-2 ">
+		<footer className="overflow-hidden w-full h-[80px] flex justify-between items-center footer-gradient footer-border sm:px-10 px-6 py-2 ">
 			<Link
 				className="flex flex-row text-center items-center justify-between md:w-[270px] w-[150px] md:h-[60px] h-[30px]"
 				to="/"
@@ -20,8 +20,10 @@ const Footer = () => {
 					<span className="text-[#7b2789]">I</span>FY
 				</h1>
 			</Link>
-			<p className="text-[35px] text-[#ECE0E0]">ABOUT US:bla bla</p>
-			<WiMoonWaxingCrescent2 className="text-[50px] cursor-pointer text-[#ECE0E0CC] rotate-[35deg] ml-60" />
+			<p className="sm:flex hidden text-[35px] text-[#ECE0E0]">
+				ABOUT US:bla bla
+			</p>
+			<WiMoonWaxingCrescent2 className=" sm:flex hidden text-[50px] cursor-pointer text-[#ECE0E0CC] rotate-[35deg] ml-60" />
 		</footer>
 	);
 };

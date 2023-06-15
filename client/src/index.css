@@ -65,4 +65,12 @@
 		text-shadow: 2px 4px 5px rgba(236, 224, 224, 0.5);
 		box-shadow: 2px 4px 5px rgba(236, 224, 224, 0.5);
 	}
+
+	.hamburger-gradient {
+		background: linear-gradient(
+			180deg,
+			rgba(133, 94, 94, 0.75) 0%,
+			rgba(133, 94, 94, 0) 100%
+		);
+	}
 }
