@@ -48,7 +48,11 @@
 }
 
 .profile-input {
-	@apply w-[400px] h-[40px] rounded-[10px] border-none outline-none mb-4 text-[20px];
+	@apply w-[400px] h-[40px] rounded-[10px] border-none outline-none mb-4 text-[20px] bg-[#ECE0E0];
+}
+
+.profilesm-link {
+	@apply pb-2 pt-2 pl-28 text-[22px] border-b-2 border-solid border-[#af9595] cursor-pointer text-justify;
 }
 
 @layer utilities {

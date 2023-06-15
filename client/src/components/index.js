@@ -6,6 +6,7 @@ import TrendingPane from './TrendingPane';
 import ProfileForm from './ProfileForm';
 import Hamburger from './Hamburger';
 import HamburgerOpened from './HamburgerOpened';
+import ProfileSmallForm from './ProfileSmallForm';
 
 export {
 	Navbar,
@@ -16,4 +17,5 @@ export {
 	ProfileForm,
 	Hamburger,
 	HamburgerOpened,
+	ProfileSmallForm,
 };

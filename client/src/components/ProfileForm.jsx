@@ -46,7 +46,7 @@ const ProfileForm = ({
 				)}
 
 				<button
-					className={`bg-[${buttonColor}] text-[25px] hover:bg-[#ECE0E0] hover:text-[${buttonColor}] text-[#ECE0E0] rounded-[10px] w-[400px]`}
+					className={`bg-[${buttonColor}] text-[25px] hover:bg-[${textColor}] text-[#ECE0E0] rounded-[10px] w-[400px]`}
 					type="submit"
 					name="submit"
 				>
