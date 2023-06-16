@@ -67,6 +67,7 @@ const Navbar = () => {
 				<div className="md:hidden h-[77%] w-[70%] bg-[#855E5E] z-10 absolute top-[60px] right-0 flex flex-col items-center py-20">
 					{links.map((link, i) => (
 						<Link
+							onClick={() => setOpen(!open)}
 							key={i}
 							className={`text-[35px] ${
 								i === links.length - 1 ? 'border-b-2' : ''
@@ -116,7 +117,7 @@ const Navbar = () => {
 				</Link>
 				<Link
 					onClick={() => handleClick('help')}
-					to="/login"
+					to="/help"
 					className={`text-[#ECE0E0] nav-links md:w-[50px] w-[20px] ${
 						activeHelp ? 'bg-[#AD2121]' : ''
 					}`}

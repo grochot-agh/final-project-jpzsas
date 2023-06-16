@@ -20,9 +20,12 @@ const Footer = () => {
 					<span className="text-[#7b2789]">I</span>FY
 				</h1>
 			</Link>
-			<p className="md:flex hidden text-[35px] text-[#ECE0E0]">
-				ABOUT US:bla bla
-			</p>
+			<Link
+				to="/about"
+				className="md:flex hidden cursor-pointer text-[35px] text-[#ECE0E0]"
+			>
+				ABOUT US
+			</Link>
 			<WiMoonWaxingCrescent2 className="md:flex hidden text-[50px] cursor-pointer text-[#ECE0E0CC] rotate-[35deg] ml-60" />
 		</footer>
 	);

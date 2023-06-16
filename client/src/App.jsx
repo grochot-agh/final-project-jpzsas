@@ -1,6 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Home, Generate, Trending, Profile, Login, Register } from './pages';
+import {
+	Home,
+	Generate,
+	Trending,
+	Profile,
+	Login,
+	Register,
+	Help,
+	AboutUs,
+} from './pages';
 import { Navbar, Footer } from './components';
 
 const App = () => {
@@ -14,6 +23,8 @@ const App = () => {
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
+				<Route path="/help" element={<Help />} />
+				<Route path="/about" element={<AboutUs />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>

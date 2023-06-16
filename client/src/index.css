@@ -57,12 +57,10 @@
 
 @layer utilities {
 	.purple-glow {
-		text-shadow: 2px 4px 5px rgba(123, 39, 137, 0.5);
-		box-shadow: 2px 4px 5px rgba(123, 39, 137, 0.5);
+		text-shadow: 4px 8px 5px rgba(123, 39, 137, 0.5);
 	}
 	.red-glow {
-		text-shadow: 2px 4px 5px rgba(173, 33, 33, 0.5);
-		box-shadow: 2px 4px 5px rgba(173, 33, 33, 0.5);
+		text-shadow: 4px 8px 5px rgba(173, 33, 33, 0.5);
 	}
 
 	.cream-glow {
@@ -70,6 +68,9 @@
 		box-shadow: 2px 4px 5px rgba(236, 224, 224, 0.5);
 	}
 
+	.dark-shadow {
+		text-shadow: 4px 8px 10px rgba(0, 0, 0, 0.5);
+	}
 	.hamburger-gradient {
 		background: linear-gradient(
 			180deg,
