@@ -7,6 +7,7 @@ import ProfileForm from './ProfileForm';
 import Hamburger from './Hamburger';
 import HamburgerOpened from './HamburgerOpened';
 import ProfileSmallForm from './ProfileSmallForm';
+import ThemeIcon from './ThemeIcon';
 
 export {
 	Navbar,
@@ -18,4 +19,5 @@ export {
 	Hamburger,
 	HamburgerOpened,
 	ProfileSmallForm,
+	ThemeIcon,
 };

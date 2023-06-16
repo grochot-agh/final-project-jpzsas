@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import logo from '../assets/logo.png';
 import { Link } from 'react-router-dom';
 import { FaQuestion } from 'react-icons/fa';
-import { IoIosClose } from 'react-icons/io';
-import { Hamburger, HamburgerOpened } from '../components';
-import { WiMoonWaxingCrescent2 } from 'react-icons/wi';
+import { Hamburger, HamburgerOpened, ThemeIcon } from '../components';
 
 const Navbar = () => {
 	const [loggedIn, setLoggedIn] = useState(true);
@@ -19,12 +17,24 @@ const Navbar = () => {
 		{
 			name: 'MY PROFILE',
 			path: loggedIn ? '/profile' : '/register',
-			color: '#AD2121',
+			color: 'text-[#AD2121]',
 		},
-		{ name: 'TRENDING', path: '/trending', color: '#ECE0E0' },
-		{ name: 'GENERATE', path: '/generate', color: '#7B2789' },
-		{ name: 'HELP', path: '/help', color: '#ECE0E0' },
-		{ name: 'ABOUT US', path: '/about', color: '#ECE0E0' },
+		{
+			name: 'TRENDING',
+			path: '/trending',
+			color: 'text-[#ECE0E0] dark:text-[#221F1F]',
+		},
+		{ name: 'GENERATE', path: '/generate', color: 'text-[#7B2789]' },
+		{
+			name: 'HELP',
+			path: '/help',
+			color: 'text-[#ECE0E0] dark:text-[#221F1F]',
+		},
+		{
+			name: 'ABOUT US',
+			path: '/about',
+			color: 'text-[#ECE0E0] dark:text-[#221F1F]',
+		},
 	];
 	const handleClick = (option) => {
 		setActiveGenerate(option === 'generate');
@@ -39,7 +49,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className="overflow-hidden w-full md:h-[80px] h-[60px] flex justify-between items-center light-gradient nav-border md:pl-10 pl-4 z-10">
+		<nav className="overflow-hidden w-full md:h-[80px] h-[60px] flex justify-between items-center light-gradient dark:dark-gradient nav-border dark:border-[#432a2a] md:pl-10 pl-4 z-10">
 			<Link
 				className="flex flex-row text-center items-center justify-between md:w-[270px] w-[150px] md:h-[60px] h-[30px]"
 				to="/"
@@ -64,26 +74,26 @@ const Navbar = () => {
 			)}
 
 			{open && (
-				<div className="md:hidden h-[77%] w-[70%] bg-[#855E5E] z-10 absolute top-[60px] right-0 flex flex-col items-center py-20">
+				<div className="md:hidden h-[77%] w-[70%] bg-[#855E5E] dark:bg-[#463232] z-10 absolute top-[60px] right-0 flex flex-col items-center py-20">
 					{links.map((link, i) => (
 						<Link
 							onClick={() => setOpen(!open)}
 							key={i}
 							className={`text-[35px] ${
 								i === links.length - 1 ? 'border-b-2' : ''
-							} border-t-2 border-solid border-[#ECE0E0] w-full pl-24 text-[${
+							} border-t-2 border-solid border-[#ECE0E0] dark:border-[#211717] w-full pl-24 ${
 								link.color
-							}]`}
+							}`}
 							to={link.path}
 						>
 							{link.name}
 						</Link>
 					))}
 					<div className="flex flex-row justify-between w-full px-4 items-center text-center absolute bottom-4">
-						<p className="text-[30px] text-[#ECE0E0]">
+						<p className="text-[30px] text-[#ECE0E0] dark:text-[#221F1F]">
 							D<span className="text-[#AD2121]">A</span>RK MODE
 						</p>
-						<WiMoonWaxingCrescent2 className="cursor-pointer text-[#ECE0E0] text-[50px] rotate-45" />
+						<ThemeIcon />
 					</div>
 				</div>
 			)}
@@ -92,7 +102,7 @@ const Navbar = () => {
 					onClick={() => handleClick('generate')}
 					to="/generate"
 					className={`text-[#7B2789] nav-links md:w-[300px] w-[100px] ${
-						activeGenerate ? 'bg-[#d0b6b6]' : ''
+						activeGenerate ? 'bg-[#d0b6b6] dark:bg-[#313338]' : ''
 					}`}
 				>
 					GENERATE
@@ -100,7 +110,7 @@ const Navbar = () => {
 				<Link
 					onClick={() => handleClick('trending')}
 					to="/trending"
-					className={`text-[#ECE0E0] nav-links md:w-[300px] w-[100px] ${
+					className={`text-[#ECE0E0] dark:text-[#4c4f55] nav-links md:w-[300px] w-[100px] ${
 						activeTrending ? 'bg-[#7B2789]' : ''
 					}`}
 				>
@@ -110,7 +120,7 @@ const Navbar = () => {
 					onClick={() => handleClick('profile')}
 					to={`${loggedIn ? '/profile' : '/register'}`}
 					className={`text-[#AD2121] nav-links md:w-[300px] w-[100px] ${
-						activeProfile ? 'bg-[#d0b6b6]' : ''
+						activeProfile ? 'bg-[#d0b6b6] dark:bg-[#313338]' : ''
 					}`}
 				>
 					MY PROFILE
@@ -118,7 +128,7 @@ const Navbar = () => {
 				<Link
 					onClick={() => handleClick('help')}
 					to="/help"
-					className={`text-[#ECE0E0] nav-links md:w-[50px] w-[20px] ${
+					className={`text-[#ECE0E0] dark:text-[#4c4f55] nav-links md:w-[50px] w-[20px] ${
 						activeHelp ? 'bg-[#AD2121]' : ''
 					}`}
 				>

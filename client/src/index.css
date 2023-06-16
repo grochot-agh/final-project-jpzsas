@@ -16,46 +16,58 @@
 	}
 }
 
-.light-gradient {
-	@apply bg-gradient-to-b from-[#855E5E] to-[#d0b6b6];
-}
-
-.footer-gradient {
-	@apply bg-gradient-to-t from-[#664848] to-[#825f5f];
-}
-
-.home-gradient {
-	@apply bg-gradient-to-b from-[#dbc3c3] to-[#855e5e];
-}
-
-.nav-border {
-	@apply border-b-4 border-solid border-[#af9595];
-}
-
-.footer-border {
-	@apply border-t-4 border-solid border-[#957171];
-}
-.nav-links {
-	@apply text-center border-l-4 border-solid border-[#af9595] h-full flex justify-center items-center md:text-[35px] text-[15px];
-}
-
-.gallery-pane {
-	@apply rounded-[15px] bg-[#ECE0E0];
-}
-
-.profile-dashboard {
-	@apply pb-3 pt-3 pl-8 border-b-2 border-solid border-[#af9595] cursor-pointer text-justify;
-}
-
-.profile-input {
-	@apply w-[400px] h-[40px] rounded-[10px] border-none outline-none mb-4 text-[20px] bg-[#ECE0E0];
-}
-
-.profilesm-link {
-	@apply pb-2 pt-2 pl-28 text-[22px] border-b-2 border-solid border-[#af9595] cursor-pointer text-justify;
-}
-
 @layer utilities {
+	.light-gradient {
+		@apply bg-gradient-to-b from-[#855E5E] to-[#d0b6b6];
+	}
+
+	.dark-gradient {
+		@apply bg-gradient-to-b from-[#291818] to-[#291818];
+	}
+
+	.footer-gradient {
+		@apply bg-gradient-to-t from-[#664848] to-[#825f5f];
+	}
+
+	.footer-dark-gradient {
+		@apply bg-gradient-to-t from-[#211717] to-[#291818];
+	}
+
+	.home-gradient {
+		@apply bg-gradient-to-b from-[#dbc3c3] to-[#855e5e] dark:home-dark-gradient;
+	}
+
+	.home-dark-gradient {
+		@apply bg-gradient-to-b from-[#291818] to-[#211717];
+	}
+
+	.nav-border {
+		@apply border-b-4 border-solid border-[#af9595];
+	}
+
+	.footer-border {
+		@apply border-t-4 border-solid border-[#957171];
+	}
+	.nav-links {
+		@apply text-center border-l-4 border-solid border-[#af9595] dark:border-[#432a2a] h-full flex justify-center items-center md:text-[35px] text-[15px];
+	}
+
+	.gallery-pane {
+		@apply rounded-[15px] bg-[#ECE0E0] dark:bg-[#313338];
+	}
+
+	.profile-dashboard {
+		@apply pb-3 pt-3 pl-8 border-b-2 border-solid border-[#af9595] dark:border-[#211717] cursor-pointer text-justify;
+	}
+
+	.profile-input {
+		@apply w-[400px] h-[40px] rounded-[10px] border-none outline-none mb-4 text-[20px] bg-[#ECE0E0] dark:bg-[#313338];
+	}
+
+	.profilesm-link {
+		@apply pb-2 pt-2 pl-28 text-[22px] border-b-2 border-solid border-[#af9595] dark:border-[#211717] cursor-pointer text-justify;
+	}
+
 	.purple-glow {
 		text-shadow: 4px 8px 5px rgba(123, 39, 137, 0.5);
 	}
@@ -65,11 +77,10 @@
 
 	.cream-glow {
 		text-shadow: 2px 4px 5px rgba(236, 224, 224, 0.5);
-		box-shadow: 2px 4px 5px rgba(236, 224, 224, 0.5);
 	}
 
 	.dark-shadow {
-		text-shadow: 4px 8px 10px rgba(0, 0, 0, 0.5);
+		text-shadow: 4px 8px 5px rgba(0, 0, 0, 0.5);
 	}
 	.hamburger-gradient {
 		background: linear-gradient(

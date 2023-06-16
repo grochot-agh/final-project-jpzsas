@@ -17,7 +17,7 @@ const ProfileSmallForm = ({
 				{firstText}
 			</label>
 			<input
-				className={`text-[25px] bg-[#ECE0E0] rounded-[10px] outline-none border-none mb-4`}
+				className={`text-[25px] bg-[#ECE0E0] dark:bg-[#313338] rounded-[10px] outline-none border-none mb-4`}
 				type={`${type}`}
 				id={`${type}`}
 			/>
@@ -25,7 +25,7 @@ const ProfileSmallForm = ({
 				{secondText}
 			</label>
 			<input
-				className={`text-[25px] bg-[#ECE0E0] rounded-[10px] outline-none border-none mb-4`}
+				className={`text-[25px] bg-[#ECE0E0] dark:bg-[#313338] rounded-[10px] outline-none border-none mb-4`}
 				type="password"
 				id="password"
 			/>
@@ -35,14 +35,14 @@ const ProfileSmallForm = ({
 						{thirdText}
 					</label>
 					<input
-						className={`text-[25px] bg-[#ECE0E0] rounded-[10px] outline-none border-none mb-4`}
+						className={`text-[25px] bg-[#ECE0E0] dark:bg-[#313338] rounded-[10px] outline-none border-none mb-4`}
 						type="password"
 						id="password"
 					/>
 				</>
 			)}
 			<button
-				className={`mt-6 text-[25px] bg-[${buttonColor}] text-[#ECE0E0] rounded-[10px] hover:bg-[${textColor}]`}
+				className={`mt-6 text-[25px] bg-[${buttonColor}] text-[#ECE0E0] dark:text-[#313338] rounded-[10px] hover:bg-[${textColor}]`}
 				type="submit"
 			>
 				{buttonText}

@@ -14,7 +14,7 @@ const ProfileForm = ({
 }) => {
 	return (
 		<div className="h-full flex flex-col justify-center items-center">
-			<h1 className="text-[40px] text-[#ECE0E0] self-start ml-[26%]">
+			<h1 className="text-[40px] text-[#ECE0E0] dark:text-[#313338] self-start ml-[26%]">
 				{title}
 			</h1>
 			<form className="flex flex-col w-[500px]">
@@ -46,7 +46,7 @@ const ProfileForm = ({
 				)}
 
 				<button
-					className={`bg-[${buttonColor}] text-[25px] hover:bg-[${textColor}] text-[#ECE0E0] rounded-[10px] w-[400px]`}
+					className={`bg-[${buttonColor}] text-[25px] hover:bg-[${textColor}] text-[#ECE0E0] dark:text-[#313338] rounded-[10px] w-[400px]`}
 					type="submit"
 					name="submit"
 				>

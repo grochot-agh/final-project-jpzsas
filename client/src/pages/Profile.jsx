@@ -19,29 +19,29 @@ const Profile = () => {
 
 	return (
 		<div className="home-gradient md:h-[77.5vh] h-[100vh] flex md:flex-row flex-col">
-			<div className="md:block hidden h-full bg-[#825f5f] w-[470px] border-r-4 border-solid border-[#af9595]">
-				<h1 className="text-[30px] text-[#ECE0E0] text-justify profile-dashboard cream-glow">
+			<div className="md:block hidden h-full bg-[#825f5f] dark:bg-[#463232] w-[470px] border-r-4 border-solid border-[#af9595] dark:border-[#211717]">
+				<h1 className="text-[30px] text-[#ECE0E0] dark:text-black text-justify profile-dashboard cream-glow dark:dark-shadow">
 					WELCOME BACK <span className="text-[#7B2789]"> {login} </span> !
 				</h1>
 				<p
 					onClick={() => handleClick('login')}
-					className={`text-[20px] text-[#7B2789] text-justify profile-dashboard hover:bg-[#ECE0E0] ${
-						activeLogin ? 'bg-[#ECE0E0]' : ''
+					className={`text-[20px] text-[#7B2789] text-justify profile-dashboard hover:bg-[#ECE0E0] dark:hover:bg-[#313338] ${
+						activeLogin ? 'bg-[#ECE0E0] dark:bg-[#313338]' : ''
 					}`}
 				>
 					LOGIN CHANGE
 				</p>
 				<p
 					onClick={() => handleClick('password')}
-					className={`text-[20px] text-[#AD2121] text-justify profile-dashboard hover:bg-[#ECE0E0] ${
-						activePassword ? 'bg-[#ECE0E0]' : ''
+					className={`text-[20px] text-[#AD2121] text-justify profile-dashboard hover:bg-[#ECE0E0] dark:hover:bg-[#313338] ${
+						activePassword ? 'bg-[#ECE0E0] dark:bg-[#313338]' : ''
 					}`}
 				>
 					PASSWORD CHANGE
 				</p>
 				<p
 					onClick={() => handleClick('email')}
-					className={`text-[20px] text-[#ECE0E0] text-justify profile-dashboard hover:bg-[#7B2789] ${
+					className={`text-[20px] text-[#ECE0E0] dark:text-black text-justify profile-dashboard hover:bg-[#7B2789] ${
 						activeEmail ? 'bg-[#7B2789]' : ''
 					}`}
 				>
@@ -49,7 +49,7 @@ const Profile = () => {
 				</p>
 				<p
 					onClick={() => handleClick('delete')}
-					className={`text-[20px] text-[#ECE0E0] text-justify profile-dashboard hover:bg-[#AD2121] ${
+					className={`text-[20px] text-[#ECE0E0] dark:text-black text-justify profile-dashboard hover:bg-[#AD2121] ${
 						activeDelete ? 'bg-[#AD2121]' : ''
 					}`}
 				>
@@ -57,33 +57,33 @@ const Profile = () => {
 				</p>
 				<p
 					onClick={() => handleClick('collection')}
-					className={`text-[20px] text-[#7B2789] text-justify profile-dashboard hover:bg-[#ECE0E0] ${
-						activeCollection ? 'bg-[#ECE0E0]' : ''
+					className={`text-[20px] text-[#7B2789] text-justify profile-dashboard hover:bg-[#ECE0E0] dark:hover:bg-[#313338] ${
+						activeCollection ? 'bg-[#ECE0E0] dark:bg-[#313338]' : ''
 					}`}
 				>
 					SHOW MY ARTIFY COLLECTION
 				</p>
 			</div>
-			<div className="w-full bg-[#855E5E] h-[40%] md:hidden flex flex-col justify-around">
+			<div className="w-full bg-[#855E5E] dark:bg-[#463232] h-[40%] md:hidden flex flex-col justify-around">
 				<p
 					onClick={() => handleClick('login')}
-					className={`text-[#7B2789] profilesm-link hover:bg-[#ECE0E0] ${
-						activeLogin ? 'bg-[#ECE0E0]' : ''
+					className={`text-[#7B2789] profilesm-link hover:bg-[#ECE0E0] dark:hover:bg-[#313338] ${
+						activeLogin ? 'bg-[#ECE0E0] dark:bg-[#313338]' : ''
 					}`}
 				>
 					LOGIN CHANGE
 				</p>
 				<p
 					onClick={() => handleClick('password')}
-					className={`text-[#AD2121] profilesm-link hover:bg-[#ECE0E0] ${
-						activePassword ? 'bg-[#ECE0E0]' : ''
+					className={`text-[#AD2121] profilesm-link hover:bg-[#ECE0E0] dark:hover:bg-[#313338] ${
+						activePassword ? 'bg-[#ECE0E0] dark:bg-[#313338]' : ''
 					}`}
 				>
 					PASSWORD CHANGE
 				</p>
 				<p
 					onClick={() => handleClick('email')}
-					className={`text-[#ECE0E0] profilesm-link hover:bg-[#7B2789] ${
+					className={`text-[#ECE0E0] dark:text-black profilesm-link hover:bg-[#7B2789] ${
 						activeEmail ? 'bg-[#7B2789]' : ''
 					}`}
 				>
@@ -91,7 +91,7 @@ const Profile = () => {
 				</p>
 				<p
 					onClick={() => handleClick('delete')}
-					className={`text-[#ECE0E0] profilesm-link hover:bg-[#AD2121] ${
+					className={`text-[#ECE0E0] dark:text-black profilesm-link hover:bg-[#AD2121] ${
 						activeDelete ? 'bg-[#AD2121]' : ''
 					}`}
 				>
@@ -99,8 +99,8 @@ const Profile = () => {
 				</p>
 				<p
 					onClick={() => handleClick('collection')}
-					className={`text-[#7B2789] profilesm-link hover:bg-[#ECE0E0] ${
-						activeCollection ? 'bg-[#ECE0E0]' : ''
+					className={`text-[#7B2789] profilesm-link hover:bg-[#ECE0E0] dark:hover:bg-[#313338] ${
+						activeCollection ? 'bg-[#ECE0E0] dark:bg-[#313338]' : ''
 					}`}
 				>
 					SHOW MY ARTIFY COLLECTION
@@ -153,7 +153,7 @@ const Profile = () => {
 
 				{activeDelete && (
 					<div className="h-full flex flex-col items-center justify-center">
-						<h1 className="text-[50px] text-[#ECE0E0]">
+						<h1 className="text-[50px] text-[#ECE0E0] dark:text-[#313338]">
 							Do you really want to leave us?
 						</h1>
 						<p className="text-[35px] text-[#AD2121]">Accept the warning</p>
@@ -162,7 +162,9 @@ const Profile = () => {
 
 				{activeCollection && (
 					<div className="h-full flex flex-col items-center">
-						<h1 className="text-[40px] text-[#ECE0E0]">YOUR COLLECTION</h1>
+						<h1 className="text-[40px] text-[#ECE0E0] dark:text-[#4c4f55]">
+							YOUR COLLECTION
+						</h1>
 						<div className="flex flex-row gap-3">
 							<TrendingPane />
 							<TrendingPane />
@@ -220,7 +222,7 @@ const Profile = () => {
 
 				{activeDelete && (
 					<div className="flex flex-col items-center justify-center text-center">
-						<h1 className="text-[40px] text-[#ECE0E0]">
+						<h1 className="text-[40px] text-[#ECE0E0] dark:text-[#313338]">
 							Do you really want to leave us?
 						</h1>
 						<p className="text-[35px] text-[#AD2121]">Accept the warning</p>
