@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart, AiOutlineHeart, AiOutlineDownload } from 'react-icons/ai';
 import { FaComment } from 'react-icons/fa';
 import { IoPaperPlane } from 'react-icons/io5';
-const TrendingPane = () => {
+import { downloadImage } from '../utils';
+
+const TrendingPane = ({ _id, name, prompt, image }) => {
 	const [liked, setLiked] = useState(false);
 	const [likes, setLikes] = useState(0);
 
@@ -12,7 +14,23 @@ const TrendingPane = () => {
 	};
 	return (
 		<div className="flex flex-col justify-center items-center">
-			<div className="w-[310px] h-[210px] bg-[#ECE0E0] rounded-[15px]" />
+			<div className="relative group">
+				<img
+					src={image}
+					alt={prompt}
+					className="w-[310px] h-[210px] rounded-[15px] object-contain bg-white"
+				/>
+				<div className="group-hover:flex w-full h-full absolute bottom-0 hidden rounded-[15px] bg-black bg-opacity-50 flex-col justify-between">
+					<p className="text-l text-white px-3 py-2">{prompt}</p>
+					<div className="flex flex-row justify-between px-3 py-3">
+						<p className="text-m text-white">{name}</p>
+						<AiOutlineDownload
+							className="text-2xl text-white cursor-pointer"
+							onClick={() => downloadImage(_id, image)}
+						/>
+					</div>
+				</div>
+			</div>
 			<div className="flex flex-row items-center justify-between w-[270px]">
 				<div className="flex flex-row items-center justify-center">
 					{liked ? (

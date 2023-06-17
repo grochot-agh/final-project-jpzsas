@@ -8,6 +8,7 @@ import Hamburger from './Hamburger';
 import HamburgerOpened from './HamburgerOpened';
 import ProfileSmallForm from './ProfileSmallForm';
 import ThemeIcon from './ThemeIcon';
+import Loading from './Loading';
 
 export {
 	Navbar,
@@ -20,4 +21,5 @@ export {
 	HamburgerOpened,
 	ProfileSmallForm,
 	ThemeIcon,
+	Loading,
 };
