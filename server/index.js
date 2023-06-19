@@ -15,7 +15,7 @@ app.use('/api/v1/ai', aiRoutes);
 
 const PORT = 8000;
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
 	res.send('Backend is running');
 });
 
