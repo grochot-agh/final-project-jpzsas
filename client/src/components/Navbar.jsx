@@ -20,9 +20,24 @@ const Navbar = () => {
 			color: 'text-[#AD2121]',
 		},
 		{
+			name: 'LOGIN',
+			path: '/login',
+			color: 'text-[#C0A6A6] dark:text-[#855E5E]',
+		},
+		{
+			name: 'REGISTER',
+			path: '/register',
+			color: 'text-[#C0A6A6] dark:text-[#855E5E]',
+		},
+		{
+			name: 'LOG OUT',
+			path: '',
+			color: 'text-[#C0A6A6] dark:text-[#855E5E]',
+		},
+		{
 			name: 'TRENDING',
 			path: '/trending',
-			color: 'text-[#ECE0E0] dark:text-[#221F1F]',
+			color: 'text-[#7B2789]',
 		},
 		{ name: 'GENERATE', path: '/generate', color: 'text-[#7B2789]' },
 		{
@@ -49,7 +64,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className="overflow-hidden w-full md:h-[80px] h-[60px] flex justify-between items-center light-gradient dark:dark-gradient nav-border dark:border-[#432a2a] md:pl-10 pl-4 z-10">
+		<nav className="overflow-hidden w-full md:h-[80px] h-[60px] flex justify-between items-center light-gradient dark:dark-gradient nav-border dark:border-[#432a2a] md:pl-10 pl-4 z-20">
 			<Link
 				className="flex flex-row text-center items-center justify-between md:w-[270px] w-[150px] md:h-[60px] h-[30px]"
 				to="/"
@@ -74,14 +89,14 @@ const Navbar = () => {
 			)}
 
 			{open && (
-				<div className="md:hidden h-[80%] w-[60%] bg-[#855E5E] dark:bg-[#463232] z-10 absolute top-[60px] right-0 flex flex-col items-center py-20">
+				<div className="md:hidden h-[80%] w-[55%] bg-[#855E5E] dark:bg-[#463232] z-20 absolute top-[60px] right-0 flex flex-col items-center py-10">
 					{links.map((link, i) => (
 						<Link
 							onClick={() => setOpen(!open)}
 							key={i}
 							className={`text-[35px] ${
 								i === links.length - 1 ? 'border-b-2' : ''
-							} border-t-2 border-solid border-[#ECE0E0] dark:border-[#211717] w-full pl-[25%] ${
+							} border-t-2 border-solid border-[#ECE0E0] dark:border-[#211717] w-full pl-5 ${
 								link.color
 							}`}
 							to={link.path}
@@ -101,8 +116,8 @@ const Navbar = () => {
 				<Link
 					onClick={() => handleClick('generate')}
 					to="/generate"
-					className={`text-[#7B2789] nav-links md:w-[300px] w-[100px] ${
-						activeGenerate ? 'bg-[#d0b6b6] dark:bg-[#313338]' : ''
+					className={`text-[#7B2789] nav-links md:w-[300px] w-[100px] dark:hover:bg-[#211717] ${
+						activeGenerate ? 'bg-[#855E5E] dark:bg-[#211717]' : ''
 					}`}
 				>
 					GENERATE
@@ -110,21 +125,42 @@ const Navbar = () => {
 				<Link
 					onClick={() => handleClick('trending')}
 					to="/trending"
-					className={`text-[#ECE0E0] dark:text-[#4c4f55] nav-links md:w-[300px] w-[100px] ${
+					className={`text-[#ECE0E0] dark:text-[#4c4f55] nav-links md:w-[300px] w-[100px] hover:bg-[#7B2789] ${
 						activeTrending ? 'bg-[#7B2789]' : ''
 					}`}
 				>
 					TRENDING
 				</Link>
-				<Link
-					onClick={() => handleClick('profile')}
-					to={`${loggedIn ? '/profile' : '/register'}`}
-					className={`text-[#AD2121] nav-links md:w-[300px] w-[100px] ${
-						activeProfile ? 'bg-[#d0b6b6] dark:bg-[#313338]' : ''
+				<div
+					className={`group nav-links md:w-[300px] w-[100px] hover:bg-[#855E5E] dark:hover:bg-[#211717] ${
+						activeProfile ? 'bg-[#855E5E] dark:bg-[#211717]' : ''
 					}`}
 				>
-					MY PROFILE
-				</Link>
+					<Link
+						onClick={() => handleClick('profile')}
+						to={`${loggedIn ? '/profile' : '/register'}`}
+						className={`text-[#AD2121] `}
+					>
+						MY PROFILE
+					</Link>
+					<div className="group-hover:flex hidden w-[250px] h-[150px] profile-gradient dark:profile-dark-gradient absolute top-[76px] z-10 flex-col justify-around items-start">
+						<Link
+							to="/login"
+							className="text-[#ECE0E0] text-[25px] border-b-4 border-t-4 border-solid border-[#af9595] dark:border-[#432a2a] w-full  cursor-pointer"
+						>
+							LOG IN
+						</Link>
+						<Link
+							to="/register"
+							className="text-[#7B2789] text-[25px] border-b-4 border-solid border-[#af9595] dark:border-[#432a2a] w-full cursor-pointer"
+						>
+							REGISTER
+						</Link>
+						<p className="text-[#AD2121] text-[25px] w-full cursor-pointer">
+							LOG OUT
+						</p>
+					</div>
+				</div>
 				<Link
 					onClick={() => handleClick('help')}
 					to="/help"

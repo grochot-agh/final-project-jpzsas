@@ -89,4 +89,22 @@
 			rgba(133, 94, 94, 0) 100%
 		);
 	}
+
+	.profile-gradient {
+		background: linear-gradient(180deg, #855e5e 0%, #dbc3c3 100%);
+		border-bottom-right-radius: 20px;
+		border-bottom-left-radius: 20px;
+	}
+
+	.profile-dark-gradient {
+		background: linear-gradient(180deg, #211717 0%, #291818 100%);
+	}
+
+	.comments-gradient {
+		background: linear-gradient(180deg, #dbc3c3 0%, #855e5e 100%);
+	}
+
+	.comments-dark-gradient {
+		background: linear-gradient(180deg, #432a2a 0%, #211717 100%);
+	}
 }

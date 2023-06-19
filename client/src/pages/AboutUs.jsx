@@ -18,7 +18,7 @@ const AboutUs = () => {
 				<h2 className="md:text-[20px] text-[22px] text-[#AD2121] dark-shadow">
 					Passion for AI and Art
 				</h2>
-				<p className="text-[18px] font-['Arial'] text-justify dark:text-[#4c4f55]">
+				<p className="text-[18px] font-['Baumans'] text-justify dark:text-[#4c4f55]">
 					At the core of ArtIfy lies our unwavering passion for both artificial
 					intelligence and art. We are driven by the remarkable potential that
 					AI holds in revolutionizing the way we create, experience, and
@@ -30,7 +30,7 @@ const AboutUs = () => {
 				<h2 className="md:text-[20px] text-[22px] text-[#7B2789] dark-shadow">
 					AI-Powered Image Generation
 				</h2>
-				<p className="text-[18px] font-['Arial'] text-justify dark:text-[#4c4f55]">
+				<p className="text-[18px] font-['Baumans'] text-justify dark:text-[#4c4f55]">
 					ArtIfy's cutting-edge AI algorithms enable users to effortlessly
 					generate captivating images, providing a source of inspiration and an
 					endless well of creative possibilities.
@@ -38,7 +38,7 @@ const AboutUs = () => {
 				<h2 className="md:text-[20px] text-[22px] text-[#AD2121] dark-shadow">
 					Image Sharing and Community
 				</h2>
-				<p className="text-[18px] font-['Arial'] text-justify dark:text-[#4c4f55]">
+				<p className="text-[18px] font-['Baumans'] text-justify dark:text-[#4c4f55]">
 					ArtIfy goes beyond being a mere image generator; it is a thriving
 					social media platform that encourages collaboration and community
 					engagement. Our user-friendly interface allows you to effortlessly
@@ -48,7 +48,7 @@ const AboutUs = () => {
 				<h2 className="md:text-[20px] text-[22px] text-[#7B2789] dark-shadow">
 					Join ArtIfy
 				</h2>
-				<p className="text-[18px] font-['Arial'] text-justify dark:text-[#4c4f55]">
+				<p className="text-[18px] font-['Baumans'] text-justify dark:text-[#4c4f55]">
 					We invite you to join our vibrant community of artists, creators, and
 					art lovers. Experience the exhilarating fusion of AI and art, where
 					technology becomes a catalyst for unleashing your creative potential.

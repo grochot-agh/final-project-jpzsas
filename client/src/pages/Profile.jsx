@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { TrendingPane, ProfileForm, ProfileSmallForm } from '../components';
+import {
+	TrendingPane,
+	ProfileForm,
+	ProfileSmallForm,
+	CommentsSection,
+} from '../components';
 
 const Profile = () => {
 	const [activeLogin, setActiveLogin] = useState(false);
@@ -7,6 +12,7 @@ const Profile = () => {
 	const [activeEmail, setActiveEmail] = useState(false);
 	const [activeDelete, setActiveDelete] = useState(false);
 	const [activeCollection, setActiveCollection] = useState(true);
+	const [openComment, setOpenComment] = useState(false);
 	const [login, setLogin] = useState('JP2137');
 
 	const handleClick = (option) => {
@@ -19,6 +25,7 @@ const Profile = () => {
 
 	return (
 		<div className="home-gradient md:h-[77.5vh] h-[100vh] flex md:flex-row flex-col">
+			{openComment && <CommentsSection height="78vh" />}
 			<div className="md:block hidden h-full bg-[#825f5f] dark:bg-[#463232] w-[470px] border-r-4 border-solid border-[#af9595] dark:border-[#211717]">
 				<h1 className="text-[30px] text-[#ECE0E0] dark:text-black text-justify profile-dashboard cream-glow dark:dark-shadow">
 					WELCOME BACK <span className="text-[#7B2789]"> {login} </span> !
@@ -161,18 +168,11 @@ const Profile = () => {
 				)}
 
 				{activeCollection && (
-					<div className="h-full flex flex-col items-center">
-						<h1 className="text-[40px] text-[#ECE0E0] dark:text-[#4c4f55]">
-							YOUR COLLECTION
-						</h1>
-						<div className="flex flex-row gap-3">
-							<TrendingPane />
-							<TrendingPane />
+					<div className="h-full flex justify-around pb-5">
+						<div className="flex self-start">
 							<TrendingPane />
 						</div>
-						<div className="flex flex-row gap-3">
-							<TrendingPane />
-							<TrendingPane />
+						<div className="flex self-end">
 							<TrendingPane />
 						</div>
 					</div>

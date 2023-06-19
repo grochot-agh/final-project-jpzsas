@@ -9,6 +9,7 @@ import HamburgerOpened from './HamburgerOpened';
 import ProfileSmallForm from './ProfileSmallForm';
 import ThemeIcon from './ThemeIcon';
 import Loading from './Loading';
+import CommentsSection from './CommentsSection';
 
 export {
 	Navbar,
@@ -22,4 +23,5 @@ export {
 	ProfileSmallForm,
 	ThemeIcon,
 	Loading,
+	CommentsSection,
 };
