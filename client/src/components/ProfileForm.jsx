@@ -17,8 +17,8 @@ const ProfileForm = ({
 	const navigate = useNavigate();
 	const [login, setLogin] = useState('');
 	const [email, setEmail] = useState('');
-	const [currPassword, setCurrPassword] = useState('');
 	const [password, setPassword] = useState('');
+	const [currPassword, setCurrPassword] = useState('');
 	const [sndPassword, setSndPassword] = useState('');
 
 	const handleSubmit = async (e) => {
@@ -37,8 +37,8 @@ const ProfileForm = ({
 					body: JSON.stringify({
 						login,
 						email,
-						currPassword,
 						password,
+						currPassword,
 						sndPassword,
 						id,
 					}),

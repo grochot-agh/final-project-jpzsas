@@ -9,11 +9,11 @@ const router = express.Router();
 
 const changeLogin = async (user, login, currPassword, res) => {
 	try {
-		if (bcrypt.compare(currPassword, user.password)) {
-			await User.findOneAndReplace(
+		const passwordMatch = await bcrypt.compare(currPassword, user.password);
+		if (passwordMatch) {
+			await User.findOneAndUpdate(
 				{ _id: user._id },
-				{ $set: { login: login } },
-				{ new: true }
+				{ $set: { login: login } }
 			);
 			res.status(200).json({ success: true, message: 'Login changed' });
 		} else {
@@ -32,11 +32,11 @@ const changeLogin = async (user, login, currPassword, res) => {
 
 const changeEmail = async (user, email, currPassword, res) => {
 	try {
-		if (bcrypt.compare(currPassword, user.password)) {
-			await User.findOneAndReplace(
+		const passwordMatch = await bcrypt.compare(currPassword, user.password);
+		if (passwordMatch) {
+			await User.findOneAndUpdate(
 				{ _id: user._id },
-				{ $set: { email: email } },
-				{ new: true }
+				{ $set: { email: email } }
 			);
 			res.status(200).json({ success: true, message: 'Email changed' });
 		} else {
@@ -61,19 +61,21 @@ const changePassword = async (
 	res
 ) => {
 	try {
-		if (bcrypt.compare(currPassword, user.password)) {
+		const passwordMatch = await bcrypt.compare(currPassword, user.password);
+		if (passwordMatch) {
 			if (password !== sndPassword) {
 				return res.status(400).json({
 					success: false,
 					message: 'New passwords do not match. Please try again.',
 				});
+			} else {
+				const encPassword = await bcrypt.hash(password, 10);
+				await User.findOneAndUpdate(
+					{ _id: user._id },
+					{ $set: { password: encPassword } }
+				);
+				res.status(200).json({ success: true, message: 'Password changed' });
 			}
-			await User.findOneAndReplace(
-				{ _id: user._id },
-				{ $set: { password: password } },
-				{ new: true }
-			);
-			res.status(200).json({ success: true, message: 'Password changed' });
 		} else {
 			res.status(401).json({
 				success: false,
@@ -84,6 +86,7 @@ const changePassword = async (
 		res.status(500).json({
 			success: false,
 			message: 'An error occurred while changing the password.',
+			error: err.message, // Include the error message in the response
 		});
 	}
 };
@@ -194,15 +197,24 @@ router.route('/delete-acc').post(async (req, res) => {
 });
 
 router.route('/update-account').post(async (req, res) => {
-	const { login, email, currPassword, password, sndPassword, id } = req.body;
+	const { login, email, password, currPassword, sndPassword, id } = req.body;
 	const user = await User.findOne({ _id: id });
 	try {
-		if (login != '' && password != '') {
-			await changeLogin(user, login, password, res);
-		} else if (email != '' && password != '') {
-			await changeEmail(user, email, password, res);
-		} else if (login == '' && email == '') {
-			await changePassword(user, currPassword, password, sndPassword, res);
+		if (login !== '' || email !== '') {
+			// Handle changing login or email
+			if (login !== '' && currPassword !== '') {
+				await changeLogin(user, login, currPassword, res);
+			} else if (email !== '' && currPassword !== '') {
+				await changeEmail(user, email, currPassword, res);
+			} else {
+				res.status(400).json({
+					success: false,
+					message: 'Please provide both a new value and a password.',
+				});
+			}
+		} else if (currPassword !== '' && password !== '' && sndPassword !== '') {
+			// Handle changing password
+			await changePassword(user, password, currPassword, sndPassword, res);
 		} else {
 			res.status(400).json({
 				success: false,
@@ -216,4 +228,5 @@ router.route('/update-account').post(async (req, res) => {
 		});
 	}
 });
+
 export default router;
