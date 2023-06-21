@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
 	TrendingPane,
 	ProfileForm,
@@ -7,13 +8,40 @@ import {
 } from '../components';
 
 const Profile = () => {
+	const navigate = useNavigate();
 	const [activeLogin, setActiveLogin] = useState(false);
 	const [activePassword, setActivePassword] = useState(false);
 	const [activeEmail, setActiveEmail] = useState(false);
 	const [activeDelete, setActiveDelete] = useState(false);
 	const [activeCollection, setActiveCollection] = useState(true);
 	const [openComment, setOpenComment] = useState(false);
-	const [login, setLogin] = useState('JP2137');
+	const [userData, setUserData] = useState('');
+
+	useEffect(() => {
+		fetch('http://localhost:8000/user/profile', {
+			method: 'POST',
+			crossDomain: true,
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				'Access-Control-Allow-Origin': '*',
+			},
+			body: JSON.stringify({
+				token: window.localStorage.getItem('token'),
+			}),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data, 'userData');
+				setUserData(data.data);
+
+				if (data.data == 'Token expired') {
+					alert('Token expired login again');
+					window.localStorage.clear();
+					navigate('/login');
+				}
+			});
+	}, []);
 
 	const handleClick = (option) => {
 		setActiveLogin(option === 'login');
@@ -28,7 +56,8 @@ const Profile = () => {
 			{openComment && <CommentsSection height="78vh" />}
 			<div className="md:block hidden h-full bg-[#825f5f] dark:bg-[#463232] w-[470px] border-r-4 border-solid border-[#af9595] dark:border-[#211717]">
 				<h1 className="text-[30px] text-[#ECE0E0] dark:text-black text-justify profile-dashboard cream-glow dark:dark-shadow">
-					WELCOME BACK <span className="text-[#7B2789]"> {login} </span> !
+					WELCOME BACK{' '}
+					<span className="text-[#7B2789]"> {userData.login} </span> !
 				</h1>
 				<p
 					onClick={() => handleClick('login')}

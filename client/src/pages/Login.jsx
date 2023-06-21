@@ -1,8 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+	const navigate = useNavigate();
+	const [login, setLogin] = useState('');
+	const [password, setPassword] = useState('');
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			const response = await fetch('http://localhost:8000/user/login', {
+				method: 'POST',
+				crossDomain: true,
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+					'Access-Control-Allow-Origin': '*',
+				},
+				body: JSON.stringify({
+					login,
+					password,
+				}),
+			});
+			const data = await response.json();
+			console.log(data);
+			console.log(data.data);
+			if (response.status === 200) {
+				alert('Login successful!');
+				window.localStorage.setItem('token', data.data);
+				window.localStorage.setItem('loggedIn', true);
+				navigate('/profile');
+			} else {
+				alert('Login failed, try again');
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	return (
 		<div className="home-gradient md:h-[77.5vh] h-[80.1vh] flex items-center justify-center flex-col py-5">
 			<h1 className="text-[25px] text-[#ECE0E0] dark:text-[#313338]">
@@ -19,19 +55,21 @@ const Login = () => {
 				<div className="w-[185px] h-[2px] bg-[#ECE0E0] dark:bg-[#313338]" />
 			</div>
 
-			<form className="flex flex-col w-[400px]">
-				<label className="text-[20px] text-[#7B2789]" for="login">
+			<form onSubmit={handleSubmit} className="flex flex-col w-[400px]">
+				<label className="text-[20px] text-[#7B2789]" htmlFor="login">
 					LOGIN
 				</label>
 				<input
+					onChange={(e) => setLogin(e.target.value)}
 					className="bg-[#ECE0E0] dark:bg-[#313338] w-[400px] h-[40px] text-[20px] rounded-[10px] mb-3 outline-none border-none"
 					type="text"
 					id="login"
 				/>
-				<label className="text-[20px] text-[#AD2121]" for="password">
+				<label className="text-[20px] text-[#AD2121]" htmlFor="password">
 					PASSWORD
 				</label>
 				<input
+					onChange={(e) => setPassword(e.target.value)}
 					className="bg-[#ECE0E0] dark:bg-[#313338] w-[400px] h-[40px] text-[20px] rounded-[10px] mb-5 border-none outline-none"
 					type="password"
 					id="password"

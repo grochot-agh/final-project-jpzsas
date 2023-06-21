@@ -5,7 +5,7 @@ const SearchBar = () => {
 		<div className="flex justify-center items-center md:mb-0 mb-6">
 			<label
 				className="text-[#7B2789] md:text-[40px] text-[25px] mr-4"
-				for="search"
+				htmlFor="search"
 			>
 				SE<span className="text-[#AD2121]">A</span>RCH
 			</label>

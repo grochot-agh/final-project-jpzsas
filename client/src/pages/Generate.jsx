@@ -91,7 +91,7 @@ const Generate = () => {
 					className="md:w-[1500px] md:h-[60px] w-[450px] bg-[#ECE0E0] dark:bg-[#313338] rounded-[15px] outline-none border-none text-[15px] font-['Arial'] p-2 self-center"
 				/>
 			</div>
-			<div className="md:flex hidden flex-row justify-between w-full overflow-hidden h-full px-40 py-5">
+			<div className="md:flex hidden flex-row justify-around w-full overflow-hidden h-full px-40 py-5">
 				<div className="w-[384px] h-[384px] bg-[#ECE0E0] dark:bg-[#313338] self-end rounded-[10px] flex justify-center items-center">
 					{form.image ? (
 						<img
