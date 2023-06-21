@@ -13,7 +13,7 @@ const ProfileSmallForm = ({
 }) => {
 	return (
 		<div className="flex flex-col h-full w-full px-10 py-10">
-			<label className={`text-[25px] text-[${textColor}]`} for={`${type}`}>
+			<label className={`text-[25px] text-[${textColor}]`} htmlFor={`${type}`}>
 				{firstText}
 			</label>
 			<input
@@ -21,7 +21,7 @@ const ProfileSmallForm = ({
 				type={`${type}`}
 				id={`${type}`}
 			/>
-			<label className={`text-[25px] text-[${textColor2}]`} for="password">
+			<label className={`text-[25px] text-[${textColor2}]`} htmlFor="password">
 				{secondText}
 			</label>
 			<input
@@ -31,7 +31,10 @@ const ProfileSmallForm = ({
 			/>
 			{threeInputs && (
 				<>
-					<label className={`text-[25px] text-[${textColor2}]`} for="password">
+					<label
+						className={`text-[25px] text-[${textColor2}]`}
+						htmlFor="password"
+					>
 						{thirdText}
 					</label>
 					<input

@@ -7,6 +7,87 @@ import User from '../mongodb/models/user.js';
 dotenv.config();
 const router = express.Router();
 
+const changeLogin = async (user, login, currPassword, res) => {
+	try {
+		if (bcrypt.compare(currPassword, user.password)) {
+			await User.findOneAndReplace(
+				{ _id: user._id },
+				{ $set: { login: login } },
+				{ new: true }
+			);
+			res.status(200).json({ success: true, message: 'Login changed' });
+		} else {
+			res.status(401).json({
+				success: false,
+				message: 'Incorrect password. Please try again.',
+			});
+		}
+	} catch (err) {
+		res.status(500).json({
+			success: false,
+			message: 'An error occurred while changing the login.',
+		});
+	}
+};
+
+const changeEmail = async (user, email, currPassword, res) => {
+	try {
+		if (bcrypt.compare(currPassword, user.password)) {
+			await User.findOneAndReplace(
+				{ _id: user._id },
+				{ $set: { email: email } },
+				{ new: true }
+			);
+			res.status(200).json({ success: true, message: 'Email changed' });
+		} else {
+			res.status(401).json({
+				success: false,
+				message: 'Incorrect password. Please try again.',
+			});
+		}
+	} catch (err) {
+		res.status(500).json({
+			success: false,
+			message: 'An error occurred while changing the email.',
+		});
+	}
+};
+
+const changePassword = async (
+	user,
+	currPassword,
+	password,
+	sndPassword,
+	res
+) => {
+	try {
+		if (bcrypt.compare(currPassword, user.password)) {
+			if (password !== sndPassword) {
+				return res.status(400).json({
+					success: false,
+					message: 'New passwords do not match. Please try again.',
+				});
+			}
+			await User.findOneAndReplace(
+				{ _id: user._id },
+				{ $set: { password: password } },
+				{ new: true }
+			);
+			res.status(200).json({ success: true, message: 'Password changed' });
+		} else {
+			res.status(401).json({
+				success: false,
+				message: 'Incorrect password. Please try again.',
+			});
+		}
+	} catch (err) {
+		res.status(500).json({
+			success: false,
+			message: 'An error occurred while changing the password.',
+		});
+	}
+};
+
 router.route('/').get((req, res) => {
 	res.send('User route is running');
 });
@@ -102,4 +183,37 @@ router.route('/profile').post(async (req, res) => {
 	}
 });
 
+router.route('/delete-acc').post(async (req, res) => {
+	const { userID } = req.body;
+	try {
+		await User.findByIdAndDelete(userID);
+		res.status(200).json({ success: true, message: 'User deleted' });
+	} catch (err) {
+		res.status(500).json({ success: false, message: err });
+	}
+});
+
+router.route('/update-account').post(async (req, res) => {
+	const { login, email, currPassword, password, sndPassword, id } = req.body;
+	const user = await User.findOne({ _id: id });
+	try {
+		if (login != '' && password != '') {
+			await changeLogin(user, login, password, res);
+		} else if (email != '' && password != '') {
+			await changeEmail(user, email, password, res);
+		} else if (login == '' && email == '') {
+			await changePassword(user, currPassword, password, sndPassword, res);
+		} else {
+			res.status(400).json({
+				success: false,
+				message: 'Please fill in all the fields.',
+			});
+		}
+	} catch (err) {
+		res.status(500).json({
+			success: false,
+			message: 'An error occurred while updating the account.',
+		});
+	}
+});
 export default router;

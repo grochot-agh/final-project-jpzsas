@@ -1,56 +1,16 @@
 import React, { useState } from 'react';
 import logo from '../assets/logo.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaQuestion } from 'react-icons/fa';
-import { Hamburger, HamburgerOpened, ThemeIcon } from '../components';
+import { Hamburger, HamburgerOpened, MobileLogin } from '../components';
 
 const Navbar = () => {
-	const [loggedIn, setLoggedIn] = useState(true);
+	const navigate = useNavigate();
 	const [activeGenerate, setActiveGenerate] = useState(false);
 	const [activeTrending, setActiveTrending] = useState(false);
 	const [activeProfile, setActiveProfile] = useState(false);
 	const [activeHelp, setActiveHelp] = useState(false);
-	const [activeMain, setActiveMain] = useState(false);
-	const [open, setOpen] = useState(false);
 
-	let links = [
-		{
-			name: 'MY PROFILE',
-			path: loggedIn ? '/profile' : '/register',
-			color: 'text-[#AD2121]',
-		},
-		{
-			name: 'LOGIN',
-			path: '/login',
-			color: 'text-[#C0A6A6] dark:text-[#855E5E]',
-		},
-		{
-			name: 'REGISTER',
-			path: '/register',
-			color: 'text-[#C0A6A6] dark:text-[#855E5E]',
-		},
-		{
-			name: 'LOG OUT',
-			path: '',
-			color: 'text-[#C0A6A6] dark:text-[#855E5E]',
-		},
-		{
-			name: 'TRENDING',
-			path: '/trending',
-			color: 'text-[#7B2789]',
-		},
-		{ name: 'GENERATE', path: '/generate', color: 'text-[#7B2789]' },
-		{
-			name: 'HELP',
-			path: '/help',
-			color: 'text-[#ECE0E0] dark:text-[#221F1F]',
-		},
-		{
-			name: 'ABOUT US',
-			path: '/about',
-			color: 'text-[#ECE0E0] dark:text-[#221F1F]',
-		},
-	];
 	const handleClick = (option) => {
 		setActiveGenerate(option === 'generate');
 		setActiveTrending(option === 'trending');
@@ -59,8 +19,10 @@ const Navbar = () => {
 		setActiveMain(option === 'main');
 	};
 
-	const menuClick = () => {
-		setOpen(!open);
+	const logOut = () => {
+		window.localStorage.clear();
+		navigate('/login');
+		window.location.reload();
 	};
 
 	return (
@@ -82,36 +44,7 @@ const Navbar = () => {
 					<span className="text-[#7b2789]">I</span>FY
 				</h1>
 			</Link>
-			{open ? (
-				<HamburgerOpened onClick={menuClick} />
-			) : (
-				<Hamburger onClick={menuClick} />
-			)}
-
-			{open && (
-				<div className="md:hidden h-[80%] w-[55%] bg-[#855E5E] dark:bg-[#463232] z-20 absolute top-[60px] right-0 flex flex-col items-center py-10">
-					{links.map((link, i) => (
-						<Link
-							onClick={() => setOpen(!open)}
-							key={i}
-							className={`text-[35px] ${
-								i === links.length - 1 ? 'border-b-2' : ''
-							} border-t-2 border-solid border-[#ECE0E0] dark:border-[#211717] w-full pl-5 ${
-								link.color
-							}`}
-							to={link.path}
-						>
-							{link.name}
-						</Link>
-					))}
-					<div className="flex flex-row justify-between w-full px-4 items-center text-center absolute bottom-4">
-						<p className="text-[30px] text-[#ECE0E0] dark:text-[#221F1F]">
-							D<span className="text-[#AD2121]">A</span>RK MODE
-						</p>
-						<ThemeIcon />
-					</div>
-				</div>
-			)}
+			<MobileLogin />
 			<div className="md:flex hidden flex-row h-full md:w-[800px] w-[600px] justify-center items-center">
 				<Link
 					onClick={() => handleClick('generate')}
@@ -138,7 +71,11 @@ const Navbar = () => {
 				>
 					<Link
 						onClick={() => handleClick('profile')}
-						to={`${loggedIn ? '/profile' : '/register'}`}
+						to={`${
+							window.localStorage.getItem('loggedIn') == 'true'
+								? '/profile'
+								: '/login'
+						}`}
 						className={`text-[#AD2121] `}
 					>
 						MY PROFILE
@@ -156,7 +93,10 @@ const Navbar = () => {
 						>
 							REGISTER
 						</Link>
-						<p className="text-[#AD2121] text-[25px] w-full cursor-pointer">
+						<p
+							onClick={logOut}
+							className="text-[#AD2121] text-[25px] w-full cursor-pointer"
+						>
 							LOG OUT
 						</p>
 					</div>

@@ -43,6 +43,37 @@ const Profile = () => {
 			});
 	}, []);
 
+	const deleteAccount = async (id) => {
+		if (window.confirm('Are you sure you want to delete your account?')) {
+			try {
+				const response = await fetch('http://localhost:8000/user/delete-acc', {
+					method: 'POST',
+					crossDomain: true,
+					headers: {
+						'Content-Type': 'application/json',
+						Accept: 'application/json',
+						'Access-Control-Allow-Origin': '*',
+					},
+					body: JSON.stringify({
+						userID: id,
+					}),
+				});
+				const data = await response.json();
+				console.log(data);
+				if (response.status === 200) {
+					alert('Account deleted successfully');
+					window.localStorage.clear();
+					navigate('/');
+					window.location.reload();
+				} else {
+					alert('Could not delete account, try again');
+				}
+			} catch (err) {
+				console.log(err);
+			}
+		}
+	};
+
 	const handleClick = (option) => {
 		setActiveLogin(option === 'login');
 		setActivePassword(option === 'password');
@@ -155,6 +186,7 @@ const Profile = () => {
 						textColor2="#AD2121"
 						buttonColor="#AD2121"
 						threeInputs={false}
+						id={userData._id}
 					/>
 				)}
 
@@ -170,6 +202,7 @@ const Profile = () => {
 						textColor2="#AD2121"
 						buttonColor="#AD2121"
 						threeInputs={true}
+						id={userData._id}
 					/>
 				)}
 
@@ -184,6 +217,7 @@ const Profile = () => {
 						textColor2="#AD2121"
 						buttonColor="#AD2121"
 						threeInputs={false}
+						id={userData._id}
 					/>
 				)}
 
@@ -193,6 +227,12 @@ const Profile = () => {
 							Do you really want to leave us?
 						</h1>
 						<p className="text-[35px] text-[#AD2121]">Accept the warning</p>
+						<button
+							onClick={() => deleteAccount(userData._id)}
+							className="w-[150px] h-[50px]  mt-4 rounded-[10px] text-[#ECE0E0] bg-[#AD2121]"
+						>
+							DELETE
+						</button>
 					</div>
 				)}
 
