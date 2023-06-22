@@ -170,7 +170,7 @@ router.route('/profile').post(async (req, res) => {
 			return res;
 		});
 		if (user == 'Token expired') {
-			return res.status(401).json({ success: false, message: user });
+			return res.status(401).json({ success: false, data: 'Token expired' });
 		}
 
 		const userLogin = user.login;

@@ -36,9 +36,10 @@ const Profile = () => {
 				setUserData(data.data);
 
 				if (data.data == 'Token expired') {
-					alert('Token expired login again');
+					alert('Token expired, please log in again');
 					window.localStorage.clear();
 					navigate('/login');
+					window.location.reload();
 				}
 			});
 	}, []);
@@ -260,6 +261,7 @@ const Profile = () => {
 						textColor2="#AD2121"
 						buttonColor="#AD2121"
 						threeInputs={false}
+						id={userData._id}
 					/>
 				)}
 				{activePassword && (
@@ -273,6 +275,7 @@ const Profile = () => {
 						textColor2="#AD2121"
 						buttonColor="#AD2121"
 						threeInputs={true}
+						id={userData._id}
 					/>
 				)}
 				{activeEmail && (
@@ -286,6 +289,7 @@ const Profile = () => {
 						textColor2="#AD2121"
 						buttonColor="#AD2121"
 						threeInputs={false}
+						id={userData._id}
 					/>
 				)}
 
@@ -295,6 +299,12 @@ const Profile = () => {
 							Do you really want to leave us?
 						</h1>
 						<p className="text-[35px] text-[#AD2121]">Accept the warning</p>
+						<button
+							onClick={() => deleteAccount(userData._id)}
+							className="w-[150px] h-[50px]  mt-4 rounded-[10px] text-[#ECE0E0] bg-[#AD2121]"
+						>
+							DELETE
+						</button>
 					</div>
 				)}
 

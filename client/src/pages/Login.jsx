@@ -32,8 +32,6 @@ const Login = () => {
 				window.localStorage.setItem('loggedIn', true);
 				navigate('/profile');
 				window.location.reload();
-			} else if (data.data == 'token expired') {
-				alert('Login token expired, login again');
 			} else {
 				alert('Login failed, try again');
 				window.localStorage.clear();
