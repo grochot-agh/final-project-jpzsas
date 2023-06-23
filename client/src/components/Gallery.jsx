@@ -19,6 +19,7 @@ const Gallery = () => {
 			if (response.status === 200) {
 				const result = await response.json();
 				setAllPosts(result.data.reverse());
+				console.log(allPosts);
 			}
 		} catch (err) {
 			console.log(err);
@@ -36,7 +37,6 @@ const Gallery = () => {
 			<h1 className="md:text-[40px] text-[30px] text-[#855E5E]">
 				EXPLORE THE GALLERY
 			</h1>
-
 			{loading ? (
 				<div className="md:flex hidden">
 					<Loading />
@@ -45,25 +45,29 @@ const Gallery = () => {
 				<div className="md:grid hidden grid-cols-4 grid-rows-2 gap-2 w-[1260px] h-[380px]">
 					<div className="row-span-2 gallery-pane">
 						<img
-							src={cat}
+							src={allPosts[0]?.image}
+							alt={allPosts[0]?.prompt}
 							className="w-full h-full object-cover gallery-pane"
 						/>
 					</div>
 					<div className="gallery-pane row-span-2 col-span-2">
 						<img
-							src={cat}
+							src={allPosts[1]?.image}
+							alt={allPosts[1]?.prompt}
 							className="w-full h-full object-cover gallery-pane"
 						/>
 					</div>
 					<div className="gallery-pane ">
 						<img
-							src={cat}
+							src={allPosts[2]?.image}
+							alt={allPosts[2]?.prompt}
 							className="w-full h-full object-cover gallery-pane"
 						/>
 					</div>
 					<div className="gallery-pane ">
 						<img
-							src={cat}
+							src={allPosts[3]?.image}
+							alt={allPosts[3]?.prompt}
 							className="w-full h-full object-cover gallery-pane"
 						/>
 					</div>
@@ -76,7 +80,8 @@ const Gallery = () => {
 				) : (
 					<div className="gallery-pane w-[350px] h-[350px] mt-10">
 						<img
-							src={cat}
+							src={allPosts[0]?.image}
+							alt={allPosts[0]?.prompt}
 							className="w-full h-full object-cover gallery-pane"
 						/>
 					</div>

@@ -8,13 +8,13 @@ const Generate = () => {
 	const [generating, setGenerating] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [form, setForm] = useState({
-		prompt: '',
-		image: '',
-		hashtag: '',
 		creator:
 			window.localStorage.getItem('loggedIn') == 'true'
 				? window.localStorage.getItem('login')
 				: '',
+		prompt: '',
+		image: '',
+		hashtag: '',
 	});
 
 	const handleChange = (e) => {
@@ -61,20 +61,32 @@ const Generate = () => {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
+						Accept: 'application/json',
+						'Access-Control-Allow-Origin': '*',
 					},
-					body: JSON.stringify({ ...form }),
+					body: JSON.stringify({
+						creator: form.creator,
+						prompt: form.prompt,
+						image: form.image,
+						hashtag: form.hashtag,
+					}),
 				});
 
-				await response.json();
-				alert('Success');
-				navigate('/');
+				const data = await response.json();
+				console.log(data);
+				if (response.status === 201) {
+					alert('Post created successfully!');
+					navigate('/');
+				} else {
+					alert('Post was not created, try again');
+				}
 			} catch (err) {
 				alert(err);
 			} finally {
 				setLoading(false);
 			}
 		} else {
-			alert('Please provide a prompt to generate');
+			alert('Please log in and provide a prompt and a hashtag to save');
 		}
 	};
 

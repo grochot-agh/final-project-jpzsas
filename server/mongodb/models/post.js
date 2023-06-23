@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 
 const Post = new mongoose.Schema({
 	creator: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User',
+		type: String,
+		required: true,
 	},
 	prompt: { type: String, required: true },
 	image: { type: String, required: true },
