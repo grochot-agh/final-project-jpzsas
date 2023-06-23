@@ -5,10 +5,13 @@ import {
 	ProfileForm,
 	ProfileSmallForm,
 	CommentsSection,
+	Loading,
+	RenderPosts,
 } from '../components';
 
 const Profile = () => {
 	const navigate = useNavigate();
+	const [loading, setLoading] = useState(false);
 	const [activeLogin, setActiveLogin] = useState(false);
 	const [activePassword, setActivePassword] = useState(false);
 	const [activeEmail, setActiveEmail] = useState(false);
@@ -16,7 +19,36 @@ const Profile = () => {
 	const [activeCollection, setActiveCollection] = useState(true);
 	const [openComment, setOpenComment] = useState(false);
 	const [userData, setUserData] = useState('');
+	const [userPosts, setUserPosts] = useState([]);
 
+	const handleCommentClick = () => {
+		setOpenComment(!openComment);
+	};
+
+	const fetchUserPosts = async (creator) => {
+		setLoading(true);
+		try {
+			const response = await fetch(
+				`http://localhost:8000/api/v1/post/${creator}`,
+				{
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				}
+			);
+
+			if (response.status === 200) {
+				const result = await response.json();
+				setUserPosts(result.data.reverse());
+				console.log(userPosts);
+			}
+		} catch (err) {
+			console.log(err);
+		} finally {
+			setLoading(false);
+		}
+	};
 	useEffect(() => {
 		fetch('http://localhost:8000/user/profile', {
 			method: 'POST',
@@ -34,7 +66,7 @@ const Profile = () => {
 			.then((data) => {
 				console.log(data, 'userData');
 				setUserData(data.data);
-
+				fetchUserPosts(data.data.login);
 				if (data.data == 'Token expired') {
 					alert('Token expired, please log in again');
 					window.localStorage.clear();
@@ -84,7 +116,7 @@ const Profile = () => {
 	};
 
 	return (
-		<div className="home-gradient md:h-[77.5vh] h-[100vh] flex md:flex-row flex-col">
+		<div className="home-gradient md:h-[77.6vh] h-full w-full flex md:flex-row flex-col">
 			{openComment && <CommentsSection height="78vh" />}
 			<div className="md:block hidden h-full bg-[#825f5f] dark:bg-[#463232] w-[470px] border-r-4 border-solid border-[#af9595] dark:border-[#211717]">
 				<h1 className="text-[30px] text-[#ECE0E0] dark:text-black text-justify profile-dashboard cream-glow dark:dark-shadow">
@@ -132,6 +164,7 @@ const Profile = () => {
 					SHOW MY ARTIFY COLLECTION
 				</p>
 			</div>
+
 			<div className="w-full bg-[#855E5E] dark:bg-[#463232] h-[40%] md:hidden flex flex-col justify-around">
 				<p
 					onClick={() => handleClick('login')}
@@ -239,12 +272,15 @@ const Profile = () => {
 
 				{activeCollection && (
 					<div className="h-full flex justify-around pb-5">
-						<div className="flex self-start">
-							<TrendingPane />
-						</div>
-						<div className="flex self-end">
-							<TrendingPane />
-						</div>
+						{loading ? (
+							<Loading />
+						) : (
+							<RenderPosts
+								data={userPosts}
+								title="No posts yet"
+								onCommentClick={handleCommentClick}
+							/>
+						)}
 					</div>
 				)}
 			</div>
@@ -309,8 +345,16 @@ const Profile = () => {
 				)}
 
 				{activeCollection && (
-					<div className="h-full flex flex-col items-center justify-center w-full">
-						<TrendingPane />
+					<div className="flex flex-col items-center justify-center w-full">
+						{loading ? (
+							<Loading />
+						) : (
+							<RenderPosts
+								data={userPosts}
+								title="No posts yet"
+								onCommentClick={handleCommentClick}
+							/>
+						)}
 					</div>
 				)}
 			</div>

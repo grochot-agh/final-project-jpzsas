@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { CommentsSection, TrendingPane, Loading } from '../components';
-
-const RenderPosts = ({ data, title }) => {
-	if (data?.length > 0) {
-		return data.map((post) => <TrendingPane key={post._id} {...post} />);
-	}
-
-	return (
-		<h2 className="mt-5 font-bold text-[#855E5E] text-xl uppercase">{title}</h2>
-	);
-};
+import {
+	CommentsSection,
+	TrendingPane,
+	Loading,
+	RenderPosts,
+} from '../components';
 
 const Trending = () => {
 	const [openComment, setOpenComment] = useState(false);
 	const [allPosts, setAllPosts] = useState(null);
 	const [loading, setLoading] = useState(false);
+
+	const handleCommentClick = () => {
+		setOpenComment(!openComment);
+	};
+
 	const fetchPosts = async () => {
 		setLoading(true);
 		try {
@@ -42,12 +42,16 @@ const Trending = () => {
 
 	return (
 		<div className="home-gradient md:h-full h-full flex items-center flex-col pb-12">
-			{openComment && <CommentsSection height="110vh" />}
+			{openComment && <CommentsSection height="trending" />}
 			{loading ? (
 				<Loading />
 			) : (
 				<div className="md:flex hidden w-full flex-row items-center justify-around">
-					<RenderPosts data={allPosts} title="No posts found" />
+					<RenderPosts
+						data={allPosts}
+						title="No posts found"
+						onCommentClick={handleCommentClick}
+					/>
 				</div>
 			)}
 
@@ -57,13 +61,17 @@ const Trending = () => {
 				<TrendingPane />
 			</div>
 
-			<div className="md:hidden flex flex-col items-between justify-between">
-				<TrendingPane />
-				<TrendingPane />
-				<TrendingPane />
-				<TrendingPane />
-				<TrendingPane />
-			</div>
+			{loading ? (
+				<Loading />
+			) : (
+				<div className="md:hidden flex flex-col items-between justify-between">
+					<RenderPosts
+						data={allPosts}
+						title="No posts found"
+						onCommentClick={handleCommentClick}
+					/>
+				</div>
+			)}
 		</div>
 	);
 };

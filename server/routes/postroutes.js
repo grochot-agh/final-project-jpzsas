@@ -25,6 +25,22 @@ router.route('/').get(async (req, res) => {
 	}
 });
 
+router.route('/:creator').get(async (req, res) => {
+	const creator = req.params.creator;
+	try {
+		const posts = await Post.find({ creator });
+
+		if (posts.length === 0) {
+			return res
+				.status(404)
+				.json({ success: false, message: 'No posts found' });
+		}
+		res.status(200).json({ success: true, data: posts });
+	} catch (err) {
+		res.status(500).json({ success: false, message: err });
+	}
+});
+
 router.route('/').post(async (req, res) => {
 	try {
 		const { creator, prompt, image, hashtag } = req.body;

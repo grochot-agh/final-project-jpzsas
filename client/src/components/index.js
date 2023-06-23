@@ -11,6 +11,7 @@ import ThemeIcon from './ThemeIcon';
 import Loading from './Loading';
 import CommentsSection from './CommentsSection';
 import MobileLogin from './MobileLogin';
+import RenderPosts from './RenderPosts';
 
 export {
 	Navbar,
@@ -26,4 +27,5 @@ export {
 	Loading,
 	CommentsSection,
 	MobileLogin,
+	RenderPosts,
 };

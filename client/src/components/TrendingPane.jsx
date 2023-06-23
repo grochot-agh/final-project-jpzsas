@@ -5,7 +5,7 @@ import { FaComment } from 'react-icons/fa';
 import { IoPaperPlane } from 'react-icons/io5';
 import { downloadImage } from '../utils';
 
-const TrendingPane = ({ _id, creator, prompt, image }) => {
+const TrendingPane = ({ _id, creator, prompt, image, onCommentClick }) => {
 	const [liked, setLiked] = useState(false);
 	const [likes, setLikes] = useState(0);
 	const [share, setShare] = useState(false);
@@ -83,7 +83,10 @@ const TrendingPane = ({ _id, creator, prompt, image }) => {
 
 					<p className="text-[#AD2121] text-[30px]">{likes}</p>
 				</div>
-				<div className="flex flex-row items-center justify-center">
+				<div
+					onClick={() => onCommentClick()}
+					className="flex flex-row items-center justify-center"
+				>
 					<FaComment className="text-[#7B2789] text-[30px] cursor-pointer" />
 					<p className="text-[#7B2789] text-[30px]">0</p>
 				</div>
