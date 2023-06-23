@@ -10,6 +10,7 @@ const Navbar = () => {
 	const [activeTrending, setActiveTrending] = useState(false);
 	const [activeProfile, setActiveProfile] = useState(false);
 	const [activeHelp, setActiveHelp] = useState(false);
+	const [activeMain, setActiveMain] = useState(false);
 
 	const handleClick = (option) => {
 		setActiveGenerate(option === 'generate');

@@ -30,6 +30,7 @@ const Login = () => {
 				alert('Login successful!');
 				window.localStorage.setItem('token', data.data);
 				window.localStorage.setItem('loggedIn', true);
+				window.localStorage.setItem('login', login);
 				navigate('/profile');
 				window.location.reload();
 			} else {
