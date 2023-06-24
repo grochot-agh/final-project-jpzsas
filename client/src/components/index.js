@@ -12,6 +12,7 @@ import Loading from './Loading';
 import CommentsSection from './CommentsSection';
 import MobileLogin from './MobileLogin';
 import RenderPosts from './RenderPosts';
+import GoogleLogin from './GoogleLogin';
 
 export {
 	Navbar,
@@ -28,4 +29,5 @@ export {
 	CommentsSection,
 	MobileLogin,
 	RenderPosts,
+	GoogleLogin,
 };

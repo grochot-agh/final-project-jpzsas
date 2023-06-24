@@ -50,30 +50,34 @@ const Profile = () => {
 		}
 	};
 	useEffect(() => {
-		fetch('http://localhost:8000/user/profile', {
-			method: 'POST',
-			crossDomain: true,
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-				'Access-Control-Allow-Origin': '*',
-			},
-			body: JSON.stringify({
-				token: window.localStorage.getItem('token'),
-			}),
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				console.log(data, 'userData');
-				setUserData(data.data);
-				fetchUserPosts(data.data.login);
-				if (data.data == 'Token expired') {
-					alert('Token expired, please log in again');
-					window.localStorage.clear();
-					navigate('/login');
-					window.location.reload();
-				}
-			});
+		if (window.localStorage.getItem('google') !== 'true') {
+			fetch('http://localhost:8000/user/profile', {
+				method: 'POST',
+				crossDomain: true,
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+					'Access-Control-Allow-Origin': '*',
+				},
+				body: JSON.stringify({
+					token: window.localStorage.getItem('token'),
+				}),
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					console.log(data, 'userData');
+					setUserData(data.data);
+					fetchUserPosts(data.data.login);
+					if (data.data == 'Token expired') {
+						alert('Token expired, please log in again');
+						window.localStorage.clear();
+						navigate('/login');
+						window.location.reload();
+					}
+				});
+		} else {
+			fetchUserPosts(window.localStorage.getItem('login'));
+		}
 	}, []);
 
 	const deleteAccount = async (id) => {
@@ -121,7 +125,13 @@ const Profile = () => {
 			<div className="md:block hidden h-full bg-[#825f5f] dark:bg-[#463232] w-[470px] border-r-4 border-solid border-[#af9595] dark:border-[#211717]">
 				<h1 className="text-[30px] text-[#ECE0E0] dark:text-black text-justify profile-dashboard cream-glow dark:dark-shadow">
 					WELCOME BACK{' '}
-					<span className="text-[#7B2789]"> {userData.login} </span> !
+					<span className="text-[#7B2789]">
+						{' '}
+						{window.localStorage.getItem('google') == 'true'
+							? window.localStorage.getItem('login')
+							: userData.login}{' '}
+					</span>{' '}
+					!
 				</h1>
 				<p
 					onClick={() => handleClick('login')}

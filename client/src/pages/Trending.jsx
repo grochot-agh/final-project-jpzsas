@@ -8,7 +8,7 @@ import {
 
 const Trending = () => {
 	const [openComment, setOpenComment] = useState(false);
-	const [allPosts, setAllPosts] = useState(null);
+	const [allPosts, setAllPosts] = useState([]);
 	const [loading, setLoading] = useState(false);
 
 	const handleCommentClick = () => {
@@ -46,7 +46,7 @@ const Trending = () => {
 			{loading ? (
 				<Loading />
 			) : (
-				<div className="md:flex hidden w-full flex-row items-center justify-around">
+				<div className="md:flex hidden w-full flex-row items-center justify-around flex-wrap">
 					<RenderPosts
 						data={allPosts}
 						title="No posts found"
@@ -55,18 +55,12 @@ const Trending = () => {
 				</div>
 			)}
 
-			<div className="md:flex hidden w-full flex-row items-center justify-around">
-				<TrendingPane />
-				<TrendingPane />
-				<TrendingPane />
-			</div>
-
 			{loading ? (
 				<Loading />
 			) : (
 				<div className="md:hidden flex flex-col items-between justify-between">
 					<RenderPosts
-						data={allPosts}
+						data={allPosts.slice(0, 6)}
 						title="No posts found"
 						onCommentClick={handleCommentClick}
 					/>

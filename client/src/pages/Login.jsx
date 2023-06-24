@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
+import { GoogleLogin } from '../components';
 
 const Login = () => {
 	const navigate = useNavigate();
 	const [login, setLogin] = useState('');
 	const [password, setPassword] = useState('');
+
+	const responseMessage = (response) => {
+		console.log(response);
+	};
+
+	const errMessage = (err) => {
+		console.log(err);
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -49,9 +58,7 @@ const Login = () => {
 			<h1 className="text-[25px] text-[#ECE0E0] dark:text-[#313338]">
 				LOG IN TO YOUR ACCOUNT
 			</h1>
-			<div className="w-[35px] h-[35px] bg-[#fff] dark:bg-[#313338] flex justify-center items-center rounded-[10px] cursor-pointer mt-3 mb-3">
-				<FcGoogle className="text-[30px]" />
-			</div>
+			<GoogleLogin />
 			<div className="flex flex-row items-center justify-center">
 				<div className="w-[185px] h-[2px] bg-[#ECE0E0] dark:bg-[#313338]" />
 				<p className="ml-1.5 mr-1.5 text-[#ECE0E0] dark:text-[#313338] text-[15px]">
