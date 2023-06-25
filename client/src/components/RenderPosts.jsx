@@ -4,7 +4,11 @@ import { TrendingPane } from '../components';
 const RenderPosts = ({ data, title, onCommentClick }) => {
 	if (data?.length > 0) {
 		return data.map((post) => (
-			<TrendingPane key={post._id} {...post} onCommentClick={onCommentClick} />
+			<TrendingPane
+				key={post._id}
+				{...post}
+				onCommentClick={() => onCommentClick(post._id)}
+			/>
 		));
 	}
 

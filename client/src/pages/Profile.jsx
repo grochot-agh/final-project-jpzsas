@@ -20,9 +20,16 @@ const Profile = () => {
 	const [openComment, setOpenComment] = useState(false);
 	const [userData, setUserData] = useState('');
 	const [userPosts, setUserPosts] = useState([]);
+	const [postId, setPostId] = useState('');
 
-	const handleCommentClick = () => {
+	const handleCommentClick = (postId) => {
 		setOpenComment(!openComment);
+		if (postId !== '') {
+			setPostId(postId);
+			console.log(postId);
+		} else {
+			setPostId('');
+		}
 	};
 
 	const fetchUserPosts = async (creator) => {
@@ -121,7 +128,7 @@ const Profile = () => {
 
 	return (
 		<div className="home-gradient md:h-[77.6vh] h-full w-full flex md:flex-row flex-col">
-			{openComment && <CommentsSection height="78vh" />}
+			{openComment && <CommentsSection height="profile" />}
 			<div className="md:block hidden h-full bg-[#825f5f] dark:bg-[#463232] w-[470px] border-r-4 border-solid border-[#af9595] dark:border-[#211717]">
 				<h1 className="text-[30px] text-[#ECE0E0] dark:text-black text-justify profile-dashboard cream-glow dark:dark-shadow">
 					WELCOME BACK{' '}

@@ -2,6 +2,7 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import { v2 as cloudinary } from 'cloudinary';
 import Post from '../mongodb/models/post.js';
+import Comment from '../mongodb/models/comment.js';
 
 dotenv.config();
 
@@ -57,4 +58,35 @@ router.route('/').post(async (req, res) => {
 		res.status(500).json({ success: false, message: err });
 	}
 });
+
+router.route('/comment').post(async (req, res) => {
+	try {
+		const { postId, user, comment } = req.body;
+
+		await Comment.create({
+			postId,
+			user,
+			comment,
+		});
+		res.status(201).json({ success: true, message: 'Comment created' });
+	} catch (err) {
+		res.status(500).json({ success: false, message: err });
+	}
+});
+
+router.route('/comment/:postId').get(async (req, res) => {
+	const postId = req.params.postId;
+	try {
+		const comments = await Comment.find({ postId });
+		if (comments.length === 0) {
+			return res
+				.status(404)
+				.json({ success: false, message: 'No comments found' });
+		}
+		res.status(200).json({ success: true, data: comments });
+	} catch (err) {
+		res.status(500).json({ success: false, message: err });
+	}
+});
+
 export default router;

@@ -84,7 +84,7 @@ const TrendingPane = ({ _id, creator, prompt, image, onCommentClick }) => {
 					<p className="text-[#AD2121] text-[30px]">{likes}</p>
 				</div>
 				<div
-					onClick={() => onCommentClick()}
+					onClick={() => onCommentClick(_id)}
 					className="flex flex-row items-center justify-center"
 				>
 					<FaComment className="text-[#7B2789] text-[30px] cursor-pointer" />
