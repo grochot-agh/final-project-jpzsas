@@ -71,6 +71,7 @@ const CommentsSection = ({ height, postId }) => {
 				const result = await response.json();
 				if (result.data.length > 0) {
 					setAllComments(result.data.reverse());
+					window.localStorage.setItem(`${postId}-num`, `${result.data.length}`);
 				}
 			}
 		} catch (err) {
@@ -84,9 +85,7 @@ const CommentsSection = ({ height, postId }) => {
 
 	return (
 		<div
-			className={`flex flex-col absolute md:top-[80px] top-[60px] left-[30px] comments-gradient dark:comments-dark-gradient w-[450px] h-[${
-				height == 'trending' ? '90%' : '73%'
-			}] z-10 border-l-4 border-r-4 border-[#af9595] dark:border-[#211717]`}
+			className={`flex flex-col absolute md:top-[80px] top-[60px] md:left-[30px] left-[15px] comments-gradient dark:comments-dark-gradient w-[450px] h-[72%] z-10 border-l-4 border-r-4 border-[#af9595] dark:border-[#211717]`}
 		>
 			<div className="w-full h-full px-3 py-2">
 				{allComments.length === 0 ? (

@@ -128,7 +128,7 @@ const Profile = () => {
 
 	return (
 		<div className="home-gradient md:h-[77.6vh] h-full w-full flex md:flex-row flex-col">
-			{openComment && <CommentsSection height="profile" />}
+			{openComment && <CommentsSection height="profile" postId={postId} />}
 			<div className="md:block hidden h-full bg-[#825f5f] dark:bg-[#463232] w-[470px] border-r-4 border-solid border-[#af9595] dark:border-[#211717]">
 				<h1 className="text-[30px] text-[#ECE0E0] dark:text-black text-justify profile-dashboard cream-glow dark:dark-shadow">
 					WELCOME BACK{' '}

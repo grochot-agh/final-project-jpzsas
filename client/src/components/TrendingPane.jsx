@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AiFillHeart, AiOutlineHeart, AiOutlineDownload } from 'react-icons/ai';
 import { MdContentCopy } from 'react-icons/md';
 import { FaComment } from 'react-icons/fa';
@@ -24,6 +24,7 @@ const TrendingPane = ({ _id, creator, prompt, image, onCommentClick }) => {
 		setLiked(!liked);
 		setLikes((prevLikes) => (liked ? prevLikes - 1 : prevLikes + 1));
 	};
+
 	return (
 		<div className="flex flex-col justify-center items-center mt-16">
 			<div className="relative group">
@@ -88,7 +89,11 @@ const TrendingPane = ({ _id, creator, prompt, image, onCommentClick }) => {
 					className="flex flex-row items-center justify-center"
 				>
 					<FaComment className="text-[#7B2789] text-[30px] cursor-pointer" />
-					<p className="text-[#7B2789] text-[30px]">0</p>
+					<p className="text-[#7B2789] text-[30px]">
+						{!window.localStorage.getItem(`${_id}-num`)
+							? 0
+							: window.localStorage.getItem(`${_id}-num`)}
+					</p>
 				</div>
 				<div
 					onClick={() => setShare(!share)}
