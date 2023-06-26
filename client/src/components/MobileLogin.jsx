@@ -50,7 +50,11 @@ const MobileLogin = () => {
 			color: 'text-[#C0A6A6] dark:text-[#855E5E]',
 			click: () => {
 				setOpen(!open);
-				window.localStorage.getItem('google') == 'true' ? gglLogout : logOut;
+				if (window.localStorage.getItem('google') === 'true') {
+					gglLogout();
+				} else {
+					logOut();
+				}
 			},
 		},
 		{

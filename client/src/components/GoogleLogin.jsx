@@ -27,6 +27,7 @@ const GoogleLogin = () => {
 					window.localStorage.setItem('loggedIn', true);
 					window.localStorage.setItem('login', res.data.name);
 					window.localStorage.setItem('google', true);
+					window.location.reload();
 				})
 				.catch((err) => console.log(err));
 		} else {
