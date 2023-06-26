@@ -2,6 +2,7 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import { v2 as cloudinary } from 'cloudinary';
 import Post from '../mongodb/models/post.js';
+import Comment from '../mongodb/models/comment.js';
 
 dotenv.config();
 
@@ -53,6 +54,92 @@ router.route('/').post(async (req, res) => {
 			hashtag,
 		});
 		res.status(201).json({ success: true, message: 'Post created' });
+	} catch (err) {
+		res.status(500).json({ success: false, message: err });
+	}
+});
+
+router.route('/comment').post(async (req, res) => {
+	try {
+		const { postId, user, comment } = req.body;
+
+		await Comment.create({
+			postId,
+			user,
+			comment,
+		});
+		res.status(201).json({ success: true, message: 'Comment created' });
+	} catch (err) {
+		res.status(500).json({ success: false, message: err });
+	}
+});
+
+router.route('/comment/:postId').get(async (req, res) => {
+	const postId = req.params.postId;
+	try {
+		const comments = await Comment.find({ postId });
+		if (comments.length === 0) {
+			return res
+				.status(404)
+				.json({ success: false, message: 'No comments found' });
+		}
+		res.status(200).json({ success: true, data: comments });
+	} catch (err) {
+		res.status(500).json({ success: false, message: err });
+	}
+});
+
+router.route('/like/:postId').post(async (req, res) => {
+	const postId = req.params.postId;
+	const { user } = req.body;
+	try {
+		const post = await Post.findById(postId);
+		if (!post) {
+			return res.status(404).json({ success: false, message: 'No post found' });
+		}
+		if (post.likes.includes(user)) {
+			return res
+				.status(400)
+				.json({ success: false, message: 'You alredy liked this post' });
+		}
+		post.likes.push(user);
+		post.numberOfLikes = post.likes.length;
+		await post.save();
+		res.status(200).json({ success: true, message: 'Post liked' });
+	} catch (err) {
+		res.status(500).json({ success: false, message: err });
+	}
+});
+
+router.route('/unlike/:postId').post(async (req, res) => {
+	const postId = req.params.postId;
+	const { user } = req.body;
+	try {
+		const post = await Post.findById(postId);
+		if (!post.likes.includes(user)) {
+			return res
+				.status(400)
+				.json({ success: false, message: 'You have not liked this post yet' });
+		}
+		post.likes = post.likes.filter((like) => like !== user);
+		post.numberOfLikes = post.likes.length;
+		await post.save();
+		res.status(200).json({ success: true, message: 'Post unliked' });
+	} catch (err) {
+		res.status(500).json({ success: false, message: err });
+	}
+});
+
+router.route('/likes/:postId').get(async (req, res) => {
+	const postId = req.params.postId;
+	try {
+		const post = await Post.findById(postId);
+		if (!post) {
+			return res.status(404).json({ success: false, message: 'No post found' });
+		}
+		res
+			.status(200)
+			.json({ success: true, users: post.likes, numLikes: post.numberOfLikes });
 	} catch (err) {
 		res.status(500).json({ success: false, message: err });
 	}

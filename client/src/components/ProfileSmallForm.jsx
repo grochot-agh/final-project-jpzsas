@@ -22,6 +22,10 @@ const ProfileSmallForm = ({
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		if (window.localStorage.getItem('google') == 'true') {
+			alert('Please log in with email to perform this operation');
+			return;
+		}
 		try {
 			const response = await fetch(
 				'http://localhost:8000/user/update-account',

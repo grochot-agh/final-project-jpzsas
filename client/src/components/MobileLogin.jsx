@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Hamburger, HamburgerOpened, ThemeIcon } from '../components';
+import { googleLogout } from '@react-oauth/google';
+
 const MobileLogin = () => {
 	const navigate = useNavigate();
 	const isUserLoggedIn = window.localStorage.getItem('loggedIn');
@@ -9,7 +11,14 @@ const MobileLogin = () => {
 	const logOut = () => {
 		window.localStorage.clear();
 		navigate('/login');
-		window, location.reload();
+		window.location.reload();
+	};
+
+	const gglLogout = () => {
+		googleLogout();
+		window.localStorage.clear();
+		navigate('/login');
+		window.location.reload();
 	};
 
 	const menuClick = () => {
@@ -41,7 +50,11 @@ const MobileLogin = () => {
 			color: 'text-[#C0A6A6] dark:text-[#855E5E]',
 			click: () => {
 				setOpen(!open);
-				logOut();
+				if (window.localStorage.getItem('google') === 'true') {
+					gglLogout();
+				} else {
+					logOut();
+				}
 			},
 		},
 		{

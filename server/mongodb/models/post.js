@@ -8,6 +8,12 @@ const Post = new mongoose.Schema({
 	prompt: { type: String, required: true },
 	image: { type: String, required: true },
 	hashtag: { type: String, required: true },
+	numberOfLikes: { type: Number, default: 0 },
+	likes: [
+		{
+			type: String,
+		},
+	],
 });
 
 const PostSchema = mongoose.model('Post', Post);

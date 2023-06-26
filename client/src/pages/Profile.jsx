@@ -20,9 +20,16 @@ const Profile = () => {
 	const [openComment, setOpenComment] = useState(false);
 	const [userData, setUserData] = useState('');
 	const [userPosts, setUserPosts] = useState([]);
+	const [postId, setPostId] = useState('');
 
-	const handleCommentClick = () => {
+	const handleCommentClick = (postId) => {
 		setOpenComment(!openComment);
+		if (postId !== '') {
+			setPostId(postId);
+			console.log(postId);
+		} else {
+			setPostId('');
+		}
 	};
 
 	const fetchUserPosts = async (creator) => {
@@ -50,33 +57,41 @@ const Profile = () => {
 		}
 	};
 	useEffect(() => {
-		fetch('http://localhost:8000/user/profile', {
-			method: 'POST',
-			crossDomain: true,
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-				'Access-Control-Allow-Origin': '*',
-			},
-			body: JSON.stringify({
-				token: window.localStorage.getItem('token'),
-			}),
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				console.log(data, 'userData');
-				setUserData(data.data);
-				fetchUserPosts(data.data.login);
-				if (data.data == 'Token expired') {
-					alert('Token expired, please log in again');
-					window.localStorage.clear();
-					navigate('/login');
-					window.location.reload();
-				}
-			});
+		if (window.localStorage.getItem('google') !== 'true') {
+			fetch('http://localhost:8000/user/profile', {
+				method: 'POST',
+				crossDomain: true,
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+					'Access-Control-Allow-Origin': '*',
+				},
+				body: JSON.stringify({
+					token: window.localStorage.getItem('token'),
+				}),
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					console.log(data, 'userData');
+					setUserData(data.data);
+					fetchUserPosts(data.data.login);
+					if (data.data == 'Token expired') {
+						alert('Token expired, please log in again');
+						window.localStorage.clear();
+						navigate('/login');
+						window.location.reload();
+					}
+				});
+		} else {
+			fetchUserPosts(window.localStorage.getItem('login'));
+		}
 	}, []);
 
 	const deleteAccount = async (id) => {
+		if (window.localStorage.getItem('google') == 'true') {
+			alert('You cannot delete your google account');
+			return;
+		}
 		if (window.confirm('Are you sure you want to delete your account?')) {
 			try {
 				const response = await fetch('http://localhost:8000/user/delete-acc', {
@@ -117,11 +132,16 @@ const Profile = () => {
 
 	return (
 		<div className="home-gradient md:h-[77.6vh] h-full w-full flex md:flex-row flex-col">
-			{openComment && <CommentsSection height="78vh" />}
+			{openComment && <CommentsSection height="profile" postId={postId} />}
 			<div className="md:block hidden h-full bg-[#825f5f] dark:bg-[#463232] w-[470px] border-r-4 border-solid border-[#af9595] dark:border-[#211717]">
 				<h1 className="text-[30px] text-[#ECE0E0] dark:text-black text-justify profile-dashboard cream-glow dark:dark-shadow">
-					WELCOME BACK{' '}
-					<span className="text-[#7B2789]"> {userData.login} </span> !
+					WELCOME BACK
+					<span className="text-[#7B2789]">
+						{window.localStorage.getItem('google') == 'true'
+							? window.localStorage.getItem('login')
+							: userData.login}
+					</span>
+					!
 				</h1>
 				<p
 					onClick={() => handleClick('login')}
@@ -330,11 +350,11 @@ const Profile = () => {
 				)}
 
 				{activeDelete && (
-					<div className="flex flex-col items-center justify-center text-center">
-						<h1 className="text-[40px] text-[#ECE0E0] dark:text-[#313338]">
+					<div className="flex flex-col h-[44.2vh] w-ful items-center justify-center text-center px-3">
+						<h1 className="text-[35px] text-[#ECE0E0] dark:text-[#313338]">
 							Do you really want to leave us?
 						</h1>
-						<p className="text-[35px] text-[#AD2121]">Accept the warning</p>
+						<p className="text-[30px] text-[#AD2121]">Accept the warning</p>
 						<button
 							onClick={() => deleteAccount(userData._id)}
 							className="w-[150px] h-[50px]  mt-4 rounded-[10px] text-[#ECE0E0] bg-[#AD2121]"

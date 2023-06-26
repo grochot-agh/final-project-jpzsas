@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AiFillHeart, AiOutlineHeart, AiOutlineDownload } from 'react-icons/ai';
 import { MdContentCopy } from 'react-icons/md';
 import { FaComment } from 'react-icons/fa';
@@ -6,10 +6,16 @@ import { IoPaperPlane } from 'react-icons/io5';
 import { downloadImage } from '../utils';
 
 const TrendingPane = ({ _id, creator, prompt, image, onCommentClick }) => {
-	const [liked, setLiked] = useState(false);
-	const [likes, setLikes] = useState(0);
 	const [share, setShare] = useState(false);
 	const [copied, setCopied] = useState('');
+	const [liked, setLiked] = useState({
+		users: [],
+		liked: [],
+	});
+	const [numLikes, setNumLikes] = useState({
+		postId: [],
+		numLikes: 0,
+	});
 
 	const handleCopy = () => {
 		setShare(!share);
@@ -20,10 +26,112 @@ const TrendingPane = ({ _id, creator, prompt, image, onCommentClick }) => {
 		});
 	};
 
-	const handleClick = () => {
-		setLiked(!liked);
-		setLikes((prevLikes) => (liked ? prevLikes - 1 : prevLikes + 1));
+	const likePost = async (user) => {
+		try {
+			const response = await fetch(
+				`http://localhost:8000/api/v1/post/like/${_id}`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${window.localStorage.getItem('token')}`,
+					},
+					body: JSON.stringify({
+						user,
+					}),
+				}
+			);
+			const data = await response.json();
+			if (response.status === 200) {
+				console.log('like added succesfully');
+				console.log(data.message);
+			} else {
+				console.log(data.message);
+			}
+		} catch (err) {
+			console.log(err);
+			console.log(data.message);
+		}
 	};
+
+	const unlikePost = async (user) => {
+		try {
+			const response = await fetch(
+				`http://localhost:8000/api/v1/post/unlike/${_id}`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${window.localStorage.getItem('token')}`,
+					},
+					body: JSON.stringify({
+						user,
+					}),
+				}
+			);
+			const data = await response.json();
+			if (response.status === 200) {
+				console.log('like removed succesfully');
+				console.log(data.message);
+			} else {
+				console.log(data.message);
+			}
+		} catch (err) {
+			console.log(err);
+			console.log(data.message);
+		}
+	};
+
+	const getLikes = async () => {
+		try {
+			const response = await fetch(
+				`http://localhost:8000/api/v1/post/likes/${_id}`,
+				{
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${window.localStorage.getItem('token')}`,
+					},
+				}
+			);
+			const data = await response.json();
+			if (response.status === 200) {
+				setLiked({
+					users: data.users,
+					liked: true,
+				});
+				setNumLikes({
+					postId: _id,
+					numLikes: data.numLikes,
+				});
+			} else {
+				console.log(data.message);
+			}
+		} catch (err) {
+			console.log(err);
+			console.log(data.message);
+		}
+	};
+
+	const onLikeClick = (id, user) => {
+		if (
+			window.localStorage.getItem('token') == null ||
+			window.localStorage.getItem('login') == null
+		) {
+			alert('Please login to like a post');
+			return;
+		}
+		if (liked.users.includes(user)) {
+			unlikePost(user);
+		} else {
+			likePost(user);
+		}
+	};
+
+	useEffect(() => {
+		getLikes();
+	}, [liked]);
+
 	return (
 		<div className="flex flex-col justify-center items-center mt-16">
 			<div className="relative group">
@@ -68,27 +176,28 @@ const TrendingPane = ({ _id, creator, prompt, image, onCommentClick }) => {
 				)}
 			</div>
 			<div className="flex flex-row items-center justify-between w-[370px]">
-				<div className="flex flex-row items-center justify-center">
-					{liked ? (
-						<AiFillHeart
-							className="text-[#AD2121] text-[30px] cursor-pointer"
-							onClick={handleClick}
-						/>
+				<div
+					onClick={() => onLikeClick(_id, window.localStorage.getItem('login'))}
+					className="flex flex-row items-center justify-center"
+				>
+					{liked.users.includes(window.localStorage.getItem('login')) ? (
+						<AiFillHeart className="text-[#AD2121] text-[30px] cursor-pointer" />
 					) : (
-						<AiOutlineHeart
-							className="text-[#AD2121] text-[30px] cursor-pointer"
-							onClick={handleClick}
-						/>
+						<AiOutlineHeart className="text-[#AD2121] text-[30px] cursor-pointer" />
 					)}
 
-					<p className="text-[#AD2121] text-[30px]">{likes}</p>
+					<p className="text-[#AD2121] text-[30px]">{numLikes.numLikes}</p>
 				</div>
 				<div
-					onClick={() => onCommentClick()}
+					onClick={() => onCommentClick(_id)}
 					className="flex flex-row items-center justify-center"
 				>
 					<FaComment className="text-[#7B2789] text-[30px] cursor-pointer" />
-					<p className="text-[#7B2789] text-[30px]">0</p>
+					<p className="text-[#7B2789] text-[30px]">
+						{!window.localStorage.getItem(`${_id}-num`)
+							? 0
+							: window.localStorage.getItem(`${_id}-num`)}
+					</p>
 				</div>
 				<div
 					onClick={() => setShare(!share)}

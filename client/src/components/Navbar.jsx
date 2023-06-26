@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import logo from '../assets/logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaQuestion } from 'react-icons/fa';
-import { Hamburger, HamburgerOpened, MobileLogin } from '../components';
+import { MobileLogin } from '../components';
+import { googleLogout } from '@react-oauth/google';
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -21,6 +22,13 @@ const Navbar = () => {
 	};
 
 	const logOut = () => {
+		window.localStorage.clear();
+		navigate('/login');
+		window.location.reload();
+	};
+
+	const gglLogout = () => {
+		googleLogout();
 		window.localStorage.clear();
 		navigate('/login');
 		window.location.reload();
@@ -95,7 +103,11 @@ const Navbar = () => {
 							REGISTER
 						</Link>
 						<p
-							onClick={logOut}
+							onClick={
+								window.localStorage.getItem('google') == 'true'
+									? gglLogout
+									: logOut
+							}
 							className="text-[#AD2121] text-[25px] w-full cursor-pointer"
 						>
 							LOG OUT

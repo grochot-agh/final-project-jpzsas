@@ -8,11 +8,17 @@ import {
 
 const Trending = () => {
 	const [openComment, setOpenComment] = useState(false);
-	const [allPosts, setAllPosts] = useState(null);
+	const [allPosts, setAllPosts] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [postId, setPostId] = useState('');
 
-	const handleCommentClick = () => {
+	const handleCommentClick = (postId) => {
 		setOpenComment(!openComment);
+		if (postId !== '') {
+			setPostId(postId);
+		} else {
+			setPostId('');
+		}
 	};
 
 	const fetchPosts = async () => {
@@ -42,11 +48,13 @@ const Trending = () => {
 
 	return (
 		<div className="home-gradient md:h-full h-full flex items-center flex-col pb-12">
-			{openComment && <CommentsSection height="trending" />}
+			{openComment && <CommentsSection height="trending" postId={postId} />}
 			{loading ? (
-				<Loading />
+				<div className="md:flex hidden">
+					<Loading />
+				</div>
 			) : (
-				<div className="md:flex hidden w-full flex-row items-center justify-around">
+				<div className="md:flex hidden w-full flex-row items-center justify-around flex-wrap">
 					<RenderPosts
 						data={allPosts}
 						title="No posts found"
@@ -55,14 +63,10 @@ const Trending = () => {
 				</div>
 			)}
 
-			<div className="md:flex hidden w-full flex-row items-center justify-around">
-				<TrendingPane />
-				<TrendingPane />
-				<TrendingPane />
-			</div>
-
 			{loading ? (
-				<Loading />
+				<div className="md:hidden flex">
+					<Loading />
+				</div>
 			) : (
 				<div className="md:hidden flex flex-col items-between justify-between">
 					<RenderPosts
