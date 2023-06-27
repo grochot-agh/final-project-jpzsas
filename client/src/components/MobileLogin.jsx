@@ -102,8 +102,8 @@ const MobileLogin = () => {
 						</Link>
 					))}
 					<div className="flex flex-row justify-between w-full px-4 items-center text-center absolute bottom-4">
-						<p className="text-[30px] text-[#ECE0E0] dark:text-[#221F1F]">
-							D<span className="text-[#AD2121]">A</span>RK MODE
+						<p className="text-[20px] text-[#ECE0E0] dark:text-[#221F1F]">
+							CH<span className="text-[#AD2121]">A</span>NGE MODE
 						</p>
 						<ThemeIcon />
 					</div>

@@ -47,7 +47,7 @@ const Trending = () => {
 	}, []);
 
 	return (
-		<div className="home-gradient md:h-full h-full flex items-center flex-col pb-12">
+		<div className="home-gradient h-full flex items-center flex-col pb-12">
 			{openComment && <CommentsSection height="trending" postId={postId} />}
 			{loading ? (
 				<div className="md:flex hidden">

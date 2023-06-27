@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Loading } from '../components';
+import noImage from '../assets/NoImage.jpg';
 
 const Gallery = ({ allPosts, filteredPosts }) => {
 	const [loading, setLoading] = useState(false);
@@ -16,7 +17,13 @@ const Gallery = ({ allPosts, filteredPosts }) => {
 				<div className="md:grid hidden grid-cols-4 grid-rows-2 gap-2 w-[1260px] h-[380px]">
 					<div className="row-span-2 gallery-pane">
 						<img
-							src={filteredPosts ? filteredPosts[0]?.image : allPosts[0]?.image}
+							src={
+								filteredPosts
+									? filteredPosts[0]?.image
+									: allPosts[0]?.image
+									? allPosts[0]?.image
+									: noImage
+							}
 							alt={
 								filteredPosts ? filteredPosts[0]?.prompt : allPosts[0]?.image
 							}
@@ -25,7 +32,13 @@ const Gallery = ({ allPosts, filteredPosts }) => {
 					</div>
 					<div className="gallery-pane row-span-2 col-span-2">
 						<img
-							src={filteredPosts ? filteredPosts[1]?.image : allPosts[1]?.image}
+							src={
+								filteredPosts
+									? filteredPosts[1]?.image
+									: allPosts[1]?.image
+									? allPosts[1]?.image
+									: noImage
+							}
 							alt={
 								filteredPosts ? filteredPosts[1]?.prompt : allPosts[1]?.image
 							}
@@ -34,7 +47,13 @@ const Gallery = ({ allPosts, filteredPosts }) => {
 					</div>
 					<div className="gallery-pane ">
 						<img
-							src={filteredPosts ? filteredPosts[2]?.image : allPosts[2]?.image}
+							src={
+								filteredPosts
+									? filteredPosts[2]?.image
+									: allPosts[2]?.image
+									? allPosts[2]?.image
+									: noImage
+							}
 							alt={
 								filteredPosts ? filteredPosts[2]?.prompt : allPosts[2]?.image
 							}
@@ -43,7 +62,13 @@ const Gallery = ({ allPosts, filteredPosts }) => {
 					</div>
 					<div className="gallery-pane ">
 						<img
-							src={filteredPosts ? filteredPosts[3]?.image : allPosts[3]?.image}
+							src={
+								filteredPosts
+									? filteredPosts[3]?.image
+									: allPosts[3]?.image
+									? allPosts[3]?.image
+									: noImage
+							}
 							alt={
 								filteredPosts ? filteredPosts[3]?.prompt : allPosts[3]?.image
 							}
@@ -59,7 +84,13 @@ const Gallery = ({ allPosts, filteredPosts }) => {
 				) : (
 					<div className="gallery-pane w-[350px] h-[350px] mt-10">
 						<img
-							src={filteredPosts ? filteredPosts[0]?.image : allPosts[0]?.image}
+							src={
+								filteredPosts
+									? filteredPosts[0]?.image
+									: allPosts[0]?.image
+									? allPosts[0]?.image
+									: noImage
+							}
 							alt={
 								filteredPosts ? filteredPosts[0]?.prompt : allPosts[0]?.image
 							}

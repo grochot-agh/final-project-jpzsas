@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutUs = () => {
 	return (
-		<div className="w-full md:h-[77.6vh] home-gradient flex flex-col">
+		<div className="w-full md:h-[100vh] h-full home-gradient flex flex-col">
 			<h1 className="self-center md:text-[40px] text-[30px] text-[#ECE0E0] dark:text-[#313338] dark-shadow">
 				About Us
 			</h1>

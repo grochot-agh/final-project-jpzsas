@@ -92,7 +92,7 @@ const Navbar = () => {
 					<div className="group-hover:flex hidden w-[250px] h-[150px] profile-gradient dark:profile-dark-gradient absolute top-[76px] z-10 flex-col justify-around items-start">
 						<Link
 							to="/login"
-							className="text-[#ECE0E0] text-[25px] border-b-4 border-t-4 border-solid border-[#af9595] dark:border-[#432a2a] w-full  cursor-pointer"
+							className="text-[#ECE0E0] dark:text-[#4c4f55] text-[25px] border-b-4 border-t-4 border-solid border-[#af9595] dark:border-[#432a2a] w-full  cursor-pointer"
 						>
 							LOG IN
 						</Link>

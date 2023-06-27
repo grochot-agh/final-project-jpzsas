@@ -2,7 +2,7 @@ import React from 'react';
 
 const Help = () => {
 	return (
-		<div className="w-full md:h-[77.6vh] home-gradient flex flex-col">
+		<div className="w-full md:h-[100vh] h-full home-gradient flex flex-col">
 			<h1 className="self-center text-[30px] text-[#ECE0E0] dark:text-black dark-shadow">
 				<span className="text-[40px] text-[#7B2789]">F</span>requently{' '}
 				<span className="text-[40px] text-[#AD2121]">A</span>sked{' '}

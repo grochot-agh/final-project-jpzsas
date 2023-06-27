@@ -10,6 +10,11 @@ const router = express.Router();
 const changeLogin = async (user, login, currPassword, res) => {
 	try {
 		const passwordMatch = await bcrypt.compare(currPassword, user.password);
+		if (await User.findOne({ login: login })) {
+			return res
+				.status(400)
+				.json({ success: false, message: 'This login already exists' });
+		}
 		if (passwordMatch) {
 			await User.findOneAndUpdate(
 				{ _id: user._id },
@@ -33,6 +38,11 @@ const changeLogin = async (user, login, currPassword, res) => {
 const changeEmail = async (user, email, currPassword, res) => {
 	try {
 		const passwordMatch = await bcrypt.compare(currPassword, user.password);
+		if (await User.findOne({ email: email })) {
+			return res
+				.status(400)
+				.json({ success: false, message: 'This email already exists' });
+		}
 		if (passwordMatch) {
 			await User.findOneAndUpdate(
 				{ _id: user._id },
@@ -64,9 +74,23 @@ const changePassword = async (
 		const passwordMatch = await bcrypt.compare(currPassword, user.password);
 		if (passwordMatch) {
 			if (password !== sndPassword) {
+				return res
+					.status(400)
+					.json({ success: false, message: 'Passwords do not match' });
+			} else if (password.length < 6) {
 				return res.status(400).json({
 					success: false,
-					message: 'New passwords do not match. Please try again.',
+					message: 'Password must be at least 6 characters long',
+				});
+			} else if (
+				!/^(?=.*\d)(?=.*[!@#$%^&*()_\-+=~`[\]{}|:;"'<>,.?\\/])(?=.*[a-zA-Z])/.test(
+					password
+				)
+			) {
+				return res.status(400).json({
+					success: false,
+					message:
+						'Password must contain at least one letter, one number and one special character',
 				});
 			} else {
 				const encPassword = await bcrypt.hash(password, 10);
@@ -102,15 +126,46 @@ router.route('/register').post(async (req, res) => {
 			return res
 				.status(400)
 				.json({ success: false, message: 'Passwords do not match' });
+		} else if (password.length < 6) {
+			return res.status(400).json({
+				success: false,
+				message: 'Password must be at least 6 characters long',
+			});
+		} else if (
+			!/^(?=.*\d)(?=.*[!@#$%^&*()_\-+=~`[\]{}|:;"'<>,.?\\/])(?=.*[a-zA-Z])/.test(
+				password
+			)
+		) {
+			return res.status(400).json({
+				success: false,
+				message:
+					'Password must contain at least one letter, one number and one special character',
+			});
 		} else {
 			const encPassword = await bcrypt.hash(password, 10);
 			try {
 				const existingUser = await User.findOne({ email: email, login: login });
+				const sameEmail = await User.findOne({ email: email });
+				const sameLogin = await User.findOne({ login: login });
 
 				if (existingUser) {
 					return res
 						.status(400)
 						.json({ success: false, message: 'User already exists' });
+				}
+
+				if (sameEmail) {
+					return res.status(400).json({
+						success: false,
+						message: 'User with given email already exists',
+					});
+				}
+
+				if (sameLogin) {
+					return res.status(400).json({
+						success: false,
+						message: 'User with given login already exists',
+					});
 				}
 
 				await User.create({

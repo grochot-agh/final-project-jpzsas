@@ -16,6 +16,11 @@ const SearchBar = ({ allPosts, setSearchResults }) => {
 						String(post.tag).toLowerCase().includes(searchText.toLowerCase()) ||
 						String(post.prompt).toLowerCase().includes(searchText.toLowerCase())
 				);
+				if (searchResult.length === 0) {
+					alert('No posts with that tag found');
+					setSearchText('');
+					return;
+				}
 				setSearchResults(searchResult);
 			}, 500)
 		);

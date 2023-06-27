@@ -56,7 +56,7 @@ const ProfileForm = ({
 				navigate('/login');
 				window.location.reload();
 			} else {
-				alert("Couldn't update account, try again");
+				alert(`Couldn't update account, try again: ${data.message}`);
 			}
 		} catch (err) {
 			console.log(err);

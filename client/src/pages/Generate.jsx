@@ -93,7 +93,7 @@ const Generate = () => {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className="home-gradient md:h-[77.5vh] h-[80.1vh] flex items-center z-0 flex-col"
+			className="home-gradient h-[100vh] flex items-center z-0 flex-col"
 		>
 			<div className="flex flex-col w-full px-5">
 				<label

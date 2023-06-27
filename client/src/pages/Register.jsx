@@ -33,7 +33,7 @@ const Register = () => {
 					alert('Registration successful!');
 					navigate('/login');
 				} else {
-					alert('Registration failed, try again');
+					alert(data.message);
 				}
 			} catch (err) {
 				console.log(err);
@@ -42,7 +42,7 @@ const Register = () => {
 	};
 
 	return (
-		<div className="home-gradient md:h-[77.5vh] h-[80.1vh] flex items-center flex-col py-5">
+		<div className="home-gradient h-[100vh] flex items-center flex-col py-5">
 			<h1 className="text-[25px] text-[#ECE0E0] dark:text-[#313338] mb-2">
 				CREATE YOUR ACCOUNT
 			</h1>
