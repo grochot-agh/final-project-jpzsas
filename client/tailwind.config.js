@@ -6,6 +6,7 @@ export default {
 		extend: {
 			screens: {
 				xs: '480px',
+				sl: '1134px',
 			},
 			fontFamily: {
 				bauhaus: ['Bauhaus 93', 'sans-serif'],

@@ -109,7 +109,7 @@ const Login = () => {
 				</button>
 			</form>
 			<div className="flex flex-col w-[400px]">
-				<h2 className="text-[15px] text-[#ECE0E0] dark:text-[#313338] text-right md:mb-1 mb-2">
+				<h2 className="text-[15px] text-[#ECE0E0] dark:text-[#313338] text-right sl:mb-1 mb-2">
 					YOU DON'T HAVE AN ACCOUNT?
 				</h2>
 				<Link

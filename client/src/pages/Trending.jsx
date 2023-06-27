@@ -50,11 +50,11 @@ const Trending = () => {
 		<div className="home-gradient h-full flex items-center flex-col pb-12">
 			{openComment && <CommentsSection height="trending" postId={postId} />}
 			{loading ? (
-				<div className="md:flex hidden">
+				<div className="sl:flex hidden">
 					<Loading />
 				</div>
 			) : (
-				<div className="md:flex hidden w-full flex-row items-center justify-around flex-wrap">
+				<div className="sl:flex hidden w-full flex-row items-center justify-around flex-wrap">
 					<RenderPosts
 						data={allPosts}
 						title="No posts found"
@@ -64,11 +64,11 @@ const Trending = () => {
 			)}
 
 			{loading ? (
-				<div className="md:hidden flex">
+				<div className="sl:hidden flex">
 					<Loading />
 				</div>
 			) : (
-				<div className="md:hidden flex flex-col items-between justify-between">
+				<div className="sl:hidden flex flex-col items-between justify-between">
 					<RenderPosts
 						data={allPosts}
 						title="No posts found"

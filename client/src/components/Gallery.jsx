@@ -6,15 +6,15 @@ const Gallery = ({ allPosts, filteredPosts }) => {
 	const [loading, setLoading] = useState(false);
 	return (
 		<div className="flex flex-col justify-center items-center">
-			<h1 className="md:text-[40px] text-[30px] text-[#855E5E]">
+			<h1 className="sl:text-[40px] text-[30px] text-[#855E5E]">
 				EXPLORE THE GALLERY
 			</h1>
 			{loading ? (
-				<div className="md:flex hidden">
+				<div className="sl:flex hidden">
 					<Loading />
 				</div>
 			) : (
-				<div className="md:grid hidden grid-cols-4 grid-rows-2 gap-2 w-[1260px] h-[380px]">
+				<div className="sl:grid hidden grid-cols-4 grid-rows-2 gap-2 w-[1260px] h-[380px]">
 					{filteredPosts && filteredPosts[0] === undefined ? (
 						<div className="row-span-2 gallery-pane" />
 					) : (
@@ -94,7 +94,7 @@ const Gallery = ({ allPosts, filteredPosts }) => {
 					)}
 				</div>
 			)}
-			<div className="md:hidden flex flex-row items-center justify-around w-[500px]">
+			<div className="sl:hidden flex flex-row items-center justify-around w-[500px]">
 				<h1 className="text-[30px] font-normal text-[#AD2121] cursor-pointer">{`<`}</h1>
 				{loading ? (
 					<Loading />

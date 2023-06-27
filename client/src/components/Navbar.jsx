@@ -35,30 +35,30 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className="overflow-hidden w-full md:h-[80px] h-[60px] flex justify-between items-center light-gradient dark:dark-gradient nav-border dark:border-[#432a2a] md:pl-10 pl-4 z-20">
+		<nav className="overflow-hidden w-full sl:h-[80px] h-[60px] flex justify-between items-center light-gradient dark:dark-gradient nav-border dark:border-[#432a2a] sl:pl-10 pl-4 z-20">
 			<Link
-				className="flex flex-row text-center items-center justify-between md:w-[270px] w-[150px] md:h-[60px] h-[30px]"
+				className="flex flex-row text-center items-center justify-between sl:w-[270px] w-[150px] sl:h-[60px] h-[30px]"
 				to="/"
 			>
 				<img
 					src={logo}
 					alt="ArtIfy logo"
-					className="object-contain w-8 md:w-14"
+					className="object-contain w-8 sl:w-14"
 				/>
 				<h1
 					onClick={() => handleClick('main')}
-					className="font-normal text-[35px] md:text-[65px] text-[#855E5E]"
+					className="font-normal text-[35px] sl:text-[65px] text-[#855E5E]"
 				>
 					<span className="text-[#ad2121]">A</span>RT
 					<span className="text-[#7b2789]">I</span>FY
 				</h1>
 			</Link>
 			<MobileLogin />
-			<div className="md:flex hidden flex-row h-full md:w-[800px] w-[600px] justify-center items-center">
+			<div className="sl:flex hidden flex-row h-full sl:w-[800px] w-[600px] justify-center items-center">
 				<Link
 					onClick={() => handleClick('generate')}
 					to="/generate"
-					className={`text-[#7B2789] nav-links md:w-[300px] w-[100px] dark:hover:bg-[#211717] ${
+					className={`text-[#7B2789] nav-links sl:w-[300px] w-[100px] dark:hover:bg-[#211717] ${
 						activeGenerate ? 'bg-[#855E5E] dark:bg-[#211717]' : ''
 					}`}
 				>
@@ -67,14 +67,14 @@ const Navbar = () => {
 				<Link
 					onClick={() => handleClick('trending')}
 					to="/trending"
-					className={`text-[#ECE0E0] dark:text-[#4c4f55] nav-links md:w-[300px] w-[100px] hover:bg-[#7B2789] ${
+					className={`text-[#ECE0E0] dark:text-[#4c4f55] nav-links sl:w-[300px] w-[100px] hover:bg-[#7B2789] ${
 						activeTrending ? 'bg-[#7B2789]' : ''
 					}`}
 				>
 					TRENDING
 				</Link>
 				<div
-					className={`group nav-links md:w-[300px] w-[100px] hover:bg-[#855E5E] dark:hover:bg-[#211717] ${
+					className={`group nav-links sl:w-[300px] w-[100px] hover:bg-[#855E5E] dark:hover:bg-[#211717] ${
 						activeProfile ? 'bg-[#855E5E] dark:bg-[#211717]' : ''
 					}`}
 				>
@@ -117,11 +117,11 @@ const Navbar = () => {
 				<Link
 					onClick={() => handleClick('help')}
 					to="/help"
-					className={`text-[#ECE0E0] dark:text-[#4c4f55] nav-links md:w-[50px] w-[20px] ${
+					className={`text-[#ECE0E0] dark:text-[#4c4f55] nav-links sl:w-[50px] w-[20px] ${
 						activeHelp ? 'bg-[#AD2121]' : ''
 					}`}
 				>
-					<FaQuestion className="md:text-[25px] text-[12px]" />
+					<FaQuestion className="sl:text-[25px] text-[12px]" />
 				</Link>
 			</div>
 		</nav>

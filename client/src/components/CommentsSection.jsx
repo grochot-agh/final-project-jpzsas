@@ -4,9 +4,9 @@ const CommentsSection = ({ height, postId }) => {
 	const [comment, setComment] = useState('');
 	const [allComments, setAllComments] = useState([]);
 
-	const calculateDate = (commDate) => {
+	const calculateDate = (comslate) => {
 		const currentDate = new Date();
-		const commentDate = new Date(commDate);
+		const commentDate = new Date(comslate);
 		const difference = Math.floor((currentDate - commentDate) / 1000);
 
 		if (difference < 60) {
@@ -43,7 +43,6 @@ const CommentsSection = ({ height, postId }) => {
 				}
 			);
 			const data = await response.json();
-			console.log(data);
 			if (response.status === 201) {
 				alert('Comment added successfully!');
 				setComment('');
@@ -66,9 +65,8 @@ const CommentsSection = ({ height, postId }) => {
 					},
 				}
 			);
-
-			if ((response.ststus = 200)) {
-				const result = await response.json();
+			const result = await response.json();
+			if (response.status === 200) {
 				if (result.data.length > 0) {
 					setAllComments(result.data.reverse());
 					window.localStorage.setItem(`${postId}-num`, `${result.data.length}`);
@@ -85,7 +83,7 @@ const CommentsSection = ({ height, postId }) => {
 
 	return (
 		<div
-			className={`flex flex-col absolute md:top-[80px] top-[60px] md:left-[30px] left-[15px] comments-gradient dark:comments-dark-gradient w-[450px] h-[85%] z-10 border-l-4 border-r-4 border-[#af9595] dark:border-[#211717]`}
+			className={`flex flex-col absolute sl:top-[80px] top-[60px] sl:left-[30px] left-[15px] comments-gradient dark:comments-dark-gradient w-[450px] h-[85%] z-10 border-l-4 border-r-4 border-[#af9595] dark:border-[#211717]`}
 		>
 			<div className="w-full h-full px-3 py-2">
 				{allComments.length === 0 ? (

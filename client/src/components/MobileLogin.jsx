@@ -86,7 +86,7 @@ const MobileLogin = () => {
 				<Hamburger onClick={menuClick} />
 			)}
 			{open && (
-				<div className="md:hidden h-[80%] w-[55%] bg-[#855E5E] dark:bg-[#463232] z-20 absolute top-[60px] right-0 flex flex-col items-center py-10">
+				<div className="sl:hidden h-[80%] w-[55%] bg-[#855E5E] dark:bg-[#463232] z-20 absolute top-[60px] right-0 flex flex-col items-center py-10">
 					{links.map((link, i) => (
 						<Link
 							onClick={link.click}

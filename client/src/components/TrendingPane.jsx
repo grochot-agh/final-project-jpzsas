@@ -135,12 +135,9 @@ const TrendingPane = ({ _id, creator, prompt, image, onCommentClick }) => {
 					postId: _id,
 					numComments: data.numComms,
 				});
-			} else {
-				console.log(data.message);
 			}
 		} catch (err) {
 			console.log(err);
-			console.log(data.message);
 		}
 	};
 
@@ -161,8 +158,11 @@ const TrendingPane = ({ _id, creator, prompt, image, onCommentClick }) => {
 
 	useEffect(() => {
 		getLikes();
-		getComments();
 	}, [liked]);
+
+	useEffect(() => {
+		getComments();
+	}, [numComments]);
 
 	return (
 		<div className="flex flex-col justify-center items-center mt-16">
