@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { FiEye } from 'react-icons/fi';
 const Register = () => {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [login, setLogin] = useState('');
 	const [password, setPassword] = useState('');
 	const [sndPassword, setSndPassword] = useState('');
+	const [showPassword, setShowPassword] = useState(false);
+	const [showSndPassword, setShowSndPassword] = useState(false);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -69,21 +71,35 @@ const Register = () => {
 				<label className="text-[20px] text-[#AD2121]" htmlFor="password">
 					ENTER PASSWORD
 				</label>
-				<input
-					onChange={(e) => setPassword(e.target.value)}
-					className="bg-[#ECE0E0] dark:bg-[#313338] w-[400px] h-[40px] text-[20px] rounded-[10px] mb-3 border-none outline-none"
-					type="password"
-					id="password"
-				/>
+				<div className="flex flex-row items-center text-center">
+					<input
+						onChange={(e) => setPassword(e.target.value)}
+						className="bg-[#ECE0E0] dark:bg-[#313338] w-[400px] h-[40px] text-[20px] rounded-[10px] mb-3 border-none outline-none mr-4"
+						type={showPassword ? 'text' : 'password'}
+						id="password"
+					/>
+					<FiEye
+						onClick={() => setShowPassword(!showPassword)}
+						className="w-[25px] h-[25px] mb-3 cursor-pointer text-[#ECE0E0] dark:text-[#313338]"
+					/>
+				</div>
+
 				<label className="text-[20px] text-[#AD2121]" htmlFor="password_second">
 					ENTER YOUR PASSWORD AGAIN
 				</label>
-				<input
-					onChange={(e) => setSndPassword(e.target.value)}
-					className="bg-[#ECE0E0] dark:bg-[#313338] w-[400px] h-[40px] text-[20px] rounded-[10px] mb-3 border-none outline-none"
-					type="password"
-					id="password_second"
-				/>
+				<div className="flex flex-row items-center text-center">
+					<input
+						onChange={(e) => setSndPassword(e.target.value)}
+						className="bg-[#ECE0E0] dark:bg-[#313338] w-[400px] h-[40px] text-[20px] rounded-[10px] mb-3 border-none outline-none mr-4"
+						type={showSndPassword ? 'text' : 'password'}
+						id="password_second"
+					/>
+					<FiEye
+						onClick={() => setShowSndPassword(!showSndPassword)}
+						className="w-[25px] h-[25px] mb-3 cursor-pointer text-[#ECE0E0] dark:text-[#313338]"
+					/>
+				</div>
+
 				<button
 					type="submit"
 					name="submit"

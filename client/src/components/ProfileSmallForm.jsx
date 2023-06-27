@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FiEye } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
 const ProfileSmallForm = ({
@@ -19,6 +20,9 @@ const ProfileSmallForm = ({
 	const [password, setPassword] = useState('');
 	const [currPassword, setCurrPassword] = useState('');
 	const [sndPassword, setSndPassword] = useState('');
+	const [showPassword, setShowPassword] = useState(false);
+	const [showSndPassword, setShowSndPassword] = useState(false);
+	const [showThirdPassword, setShowThirdPassword] = useState(false);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -70,27 +74,45 @@ const ProfileSmallForm = ({
 			<label className={`text-[25px] text-[${textColor}]`} htmlFor={`${type}`}>
 				{firstText}
 			</label>
-			<input
-				onChange={
-					type === 'email'
-						? (e) => setEmail(e.target.value)
-						: type === 'password'
-						? (e) => setPassword(e.target.value)
-						: (e) => setLogin(e.target.value)
-				}
-				className={`text-[25px] bg-[#ECE0E0] dark:bg-[#313338] rounded-[10px] outline-none border-none mb-4`}
-				type={`${type}`}
-				id={`${type}`}
-			/>
+			<div className="flex flex-row items-center text-center">
+				<input
+					onChange={
+						type === 'email'
+							? (e) => setEmail(e.target.value)
+							: type === 'password'
+							? (e) => setPassword(e.target.value)
+							: (e) => setLogin(e.target.value)
+					}
+					className={`text-[25px] bg-[#ECE0E0] dark:bg-[#313338] rounded-[10px] outline-none border-none mb-4 w-full ${
+						type === 'password' ? 'mr-4' : ''
+					} `}
+					type={type === 'password' && showPassword ? 'text' : `${type}`}
+					id={`${type}`}
+				/>
+				{type === 'password' && (
+					<FiEye
+						onClick={() => setShowPassword(!showPassword)}
+						className="w-[25px] h-[25px] mb-4 cursor-pointer text-[#ECE0E0] dark:text-[#313338]"
+					/>
+				)}
+			</div>
+
 			<label className={`text-[25px] text-[${textColor2}]`} htmlFor="password">
 				{secondText}
 			</label>
-			<input
-				onChange={(e) => setCurrPassword(e.target.value)}
-				className={`text-[25px] bg-[#ECE0E0] dark:bg-[#313338] rounded-[10px] outline-none border-none mb-4`}
-				type="password"
-				id="password"
-			/>
+			<div className="flex flex-row items-center text-center">
+				<input
+					onChange={(e) => setCurrPassword(e.target.value)}
+					className={`text-[25px] bg-[#ECE0E0] dark:bg-[#313338] rounded-[10px] outline-none border-none mb-4 mr-4 w-full`}
+					type={showSndPassword ? 'text' : 'password'}
+					id="password"
+				/>
+				<FiEye
+					onClick={() => setShowSndPassword(!showSndPassword)}
+					className="w-[25px] h-[25px] mb-4 cursor-pointer text-[#ECE0E0] dark:text-[#313338]"
+				/>
+			</div>
+
 			{threeInputs && (
 				<>
 					<label
@@ -99,14 +121,21 @@ const ProfileSmallForm = ({
 					>
 						{thirdText}
 					</label>
-					<input
-						onChange={(e) => setSndPassword(e.target.value)}
-						className={`text-[25px] bg-[#ECE0E0] dark:bg-[#313338] rounded-[10px] outline-none border-none mb-4`}
-						type="password"
-						id="password"
-					/>
+					<div className="flex flex-row items-center text-center">
+						<input
+							onChange={(e) => setSndPassword(e.target.value)}
+							className={`text-[25px] bg-[#ECE0E0] dark:bg-[#313338] rounded-[10px] outline-none border-none mb-4 mr-4 w-full`}
+							type={showThirdPassword ? 'text' : 'password'}
+							id="password"
+						/>
+						<FiEye
+							onClick={() => setShowThirdPassword(!showThirdPassword)}
+							className="w-[25px] h-[25px] mb-4 cursor-pointer text-[#ECE0E0] dark:text-[#313338]"
+						/>
+					</div>
 				</>
 			)}
+
 			<button
 				className={`mt-6 text-[25px] bg-[${buttonColor}] text-[#ECE0E0] dark:text-[#313338] rounded-[10px] hover:bg-[${textColor}]`}
 				type="submit"

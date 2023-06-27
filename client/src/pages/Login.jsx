@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '../components';
+import { FiEye } from 'react-icons/fi';
 
 const Login = () => {
 	const navigate = useNavigate();
 	const [login, setLogin] = useState('');
+	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [showPassword, setShowPassword] = useState(false);
 
 	const responseMessage = (response) => {
 		console.log(response);
@@ -29,6 +32,7 @@ const Login = () => {
 				},
 				body: JSON.stringify({
 					login,
+					email,
 					password,
 				}),
 			});
@@ -69,10 +73,13 @@ const Login = () => {
 
 			<form onSubmit={handleSubmit} className="flex flex-col w-[400px]">
 				<label className="text-[20px] text-[#7B2789]" htmlFor="login">
-					LOGIN
+					LOGIN/EMAIL
 				</label>
 				<input
-					onChange={(e) => setLogin(e.target.value)}
+					onChange={(e) => {
+						setLogin(e.target.value);
+						setEmail(e.target.value);
+					}}
 					className="bg-[#ECE0E0] dark:bg-[#313338] w-[400px] h-[40px] text-[20px] rounded-[10px] mb-3 outline-none border-none"
 					type="text"
 					id="login"
@@ -80,12 +87,19 @@ const Login = () => {
 				<label className="text-[20px] text-[#AD2121]" htmlFor="password">
 					PASSWORD
 				</label>
-				<input
-					onChange={(e) => setPassword(e.target.value)}
-					className="bg-[#ECE0E0] dark:bg-[#313338] w-[400px] h-[40px] text-[20px] rounded-[10px] mb-5 border-none outline-none"
-					type="password"
-					id="password"
-				/>
+				<div className="flex flex-row items-center text-center">
+					<input
+						onChange={(e) => setPassword(e.target.value)}
+						className="bg-[#ECE0E0] dark:bg-[#313338] w-[400px] h-[40px] text-[20px] rounded-[10px] mb-5 border-none outline-none mr-4"
+						type={showPassword ? 'text' : 'password'}
+						id="password"
+					/>
+					<FiEye
+						onClick={() => setShowPassword(!showPassword)}
+						className="w-[25px] h-[25px] mb-5 cursor-pointer text-[#ECE0E0] dark:text-[#313338]"
+					/>
+				</div>
+
 				<button
 					type="submit"
 					name="submit"

@@ -185,9 +185,18 @@ router.route('/register').post(async (req, res) => {
 
 router.route('/login').post(async (req, res) => {
 	try {
-		const { login, password } = req.body;
-
-		const user = await User.findOne({ login });
+		const { login, email, password } = req.body;
+		let user = '';
+		if (await User.findOne({ login })) {
+			user = await User.findOne({ login });
+		} else if (await User.findOne({ email })) {
+			user = await User.findOne({ email });
+		} else {
+			res.status(400).json({
+				success: false,
+				message: 'User with given credentials was not found',
+			});
+		}
 
 		if (!user) {
 			return res
