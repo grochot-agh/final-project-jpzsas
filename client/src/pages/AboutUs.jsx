@@ -2,11 +2,11 @@ import React from 'react';
 
 const AboutUs = () => {
 	return (
-		<div className="w-full md:h-[77.6vh] home-gradient flex flex-col">
-			<h1 className="self-center md:text-[40px] text-[30px] text-[#ECE0E0] dark:text-[#313338] dark-shadow">
+		<div className="w-full sl:h-[100vh] h-full home-gradient flex flex-col">
+			<h1 className="self-center sl:text-[40px] text-[30px] text-[#ECE0E0] dark:text-[#313338] dark-shadow">
 				About Us
 			</h1>
-			<p className="md:text-[22px] text-[20px] md:mx-20 mx-8 text-justify md:mb-5 mb-3 dark:text-[#313338]">
+			<p className="sl:text-[22px] text-[20px] sl:mx-20 mx-8 text-justify sl:mb-5 mb-3 dark:text-[#313338]">
 				Welcome to ArtIfy, the ultimate AI-powered image generating and sharing
 				social media app. At ArtIfy, we believe in the boundless creativity that
 				arises when artificial intelligence meets the world of art. Our platform
@@ -14,8 +14,8 @@ const AboutUs = () => {
 				seamlessly intertwine, empowering users to unleash their imagination and
 				bring their artistic visions to life.
 			</p>
-			<div className="md:mx-10 mx-5">
-				<h2 className="md:text-[20px] text-[22px] text-[#AD2121] dark-shadow">
+			<div className="sl:mx-10 mx-5">
+				<h2 className="sl:text-[20px] text-[22px] text-[#AD2121] dark-shadow">
 					Passion for AI and Art
 				</h2>
 				<p className="text-[18px] font-['Baumans'] text-justify dark:text-[#4c4f55]">
@@ -27,7 +27,7 @@ const AboutUs = () => {
 					artists, creators, and enthusiasts can connect, collaborate, and
 					inspire one another.
 				</p>
-				<h2 className="md:text-[20px] text-[22px] text-[#7B2789] dark-shadow">
+				<h2 className="sl:text-[20px] text-[22px] text-[#7B2789] dark-shadow">
 					AI-Powered Image Generation
 				</h2>
 				<p className="text-[18px] font-['Baumans'] text-justify dark:text-[#4c4f55]">
@@ -35,7 +35,7 @@ const AboutUs = () => {
 					generate captivating images, providing a source of inspiration and an
 					endless well of creative possibilities.
 				</p>
-				<h2 className="md:text-[20px] text-[22px] text-[#AD2121] dark-shadow">
+				<h2 className="sl:text-[20px] text-[22px] text-[#AD2121] dark-shadow">
 					Image Sharing and Community
 				</h2>
 				<p className="text-[18px] font-['Baumans'] text-justify dark:text-[#4c4f55]">
@@ -45,7 +45,7 @@ const AboutUs = () => {
 					share your creations with a global audience of fellow artists and art
 					enthusiasts.
 				</p>
-				<h2 className="md:text-[20px] text-[22px] text-[#7B2789] dark-shadow">
+				<h2 className="sl:text-[20px] text-[22px] text-[#7B2789] dark-shadow">
 					Join ArtIfy
 				</h2>
 				<p className="text-[18px] font-['Baumans'] text-justify dark:text-[#4c4f55]">

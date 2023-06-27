@@ -4,9 +4,9 @@ const CommentsSection = ({ height, postId }) => {
 	const [comment, setComment] = useState('');
 	const [allComments, setAllComments] = useState([]);
 
-	const calculateDate = (commDate) => {
+	const calculateDate = (comslate) => {
 		const currentDate = new Date();
-		const commentDate = new Date(commDate);
+		const commentDate = new Date(comslate);
 		const difference = Math.floor((currentDate - commentDate) / 1000);
 
 		if (difference < 60) {
@@ -43,7 +43,6 @@ const CommentsSection = ({ height, postId }) => {
 				}
 			);
 			const data = await response.json();
-			console.log(data);
 			if (response.status === 201) {
 				alert('Comment added successfully!');
 				setComment('');
@@ -66,9 +65,8 @@ const CommentsSection = ({ height, postId }) => {
 					},
 				}
 			);
-
-			if ((response.ststus = 200)) {
-				const result = await response.json();
+			const result = await response.json();
+			if (response.status === 200) {
 				if (result.data.length > 0) {
 					setAllComments(result.data.reverse());
 					window.localStorage.setItem(`${postId}-num`, `${result.data.length}`);
@@ -85,7 +83,7 @@ const CommentsSection = ({ height, postId }) => {
 
 	return (
 		<div
-			className={`flex flex-col absolute md:top-[80px] top-[60px] md:left-[30px] left-[15px] comments-gradient dark:comments-dark-gradient w-[450px] h-[72%] z-10 border-l-4 border-r-4 border-[#af9595] dark:border-[#211717]`}
+			className={`flex flex-col absolute sl:top-[80px] top-[60px] sl:left-[30px] left-[15px] comments-gradient dark:comments-dark-gradient w-[450px] h-[85%] z-10 border-l-4 border-r-4 border-[#af9595] dark:border-[#211717]`}
 		>
 			<div className="w-full h-full px-3 py-2">
 				{allComments.length === 0 ? (
@@ -105,16 +103,17 @@ const CommentsSection = ({ height, postId }) => {
 			</div>
 			<form
 				onSubmit={handleSubmit}
-				className="absolute bottom-0 h-[150px] w-full bg-[#855E5E] dark:bg-[#291818]"
+				className="absolute bottom-7 h-[150px] w-full bg-[#855E5E] dark:bg-[#291818]"
 			>
 				<textarea
 					onChange={(e) => setComment(e.target.value)}
-					className="border-none outline-none resize-none w-full h-[90%] font-['Baumans'] px-4 py-4 bg-transparent text-[#ECE0E0] dark:text-[#855E5E] placeholder:text-[#ECE0E0] dark:placeholder:text-[#855E5E]"
+					value={comment}
+					className="border-none outline-none resize-none w-full h-[120px] font-['Baumans'] px-4 py-4 bg-transparent text-[#ECE0E0] dark:text-[#855E5E] placeholder:text-[#ECE0E0] dark:placeholder:text-[#855E5E]"
 					placeholder="Add a comment"
 				/>
 				<button
 					type="submit"
-					className="w-full h-[50px] bg-[#7b2789] text-lg text-[#ECE0E0] dark:text-[#855E5E]"
+					className="w-full h-[50px] bg-[#7b2789] text-lg text-[#ECE0E0] dark:text-[#855E5E] border-b-4 border-[#af9595] dark:border-[#211717]"
 				>
 					Send comment
 				</button>

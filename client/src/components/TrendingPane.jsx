@@ -17,6 +17,11 @@ const TrendingPane = ({ _id, creator, prompt, image, onCommentClick }) => {
 		numLikes: 0,
 	});
 
+	const [numComments, setNumComments] = useState({
+		postId: [],
+		numComments: 0,
+	});
+
 	const handleCopy = () => {
 		setShare(!share);
 		setCopied(image);
@@ -113,6 +118,29 @@ const TrendingPane = ({ _id, creator, prompt, image, onCommentClick }) => {
 		}
 	};
 
+	const getComments = async () => {
+		try {
+			const response = await fetch(
+				`http://localhost:8000/api/v1/post/comment/${_id}`,
+				{
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				}
+			);
+			const data = await response.json();
+			if (response.status === 200) {
+				setNumComments({
+					postId: _id,
+					numComments: data.numComms,
+				});
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	const onLikeClick = (id, user) => {
 		if (
 			window.localStorage.getItem('token') == null ||
@@ -131,6 +159,10 @@ const TrendingPane = ({ _id, creator, prompt, image, onCommentClick }) => {
 	useEffect(() => {
 		getLikes();
 	}, [liked]);
+
+	useEffect(() => {
+		getComments();
+	}, [numComments]);
 
 	return (
 		<div className="flex flex-col justify-center items-center mt-16">
@@ -194,9 +226,7 @@ const TrendingPane = ({ _id, creator, prompt, image, onCommentClick }) => {
 				>
 					<FaComment className="text-[#7B2789] text-[30px] cursor-pointer" />
 					<p className="text-[#7B2789] text-[30px]">
-						{!window.localStorage.getItem(`${_id}-num`)
-							? 0
-							: window.localStorage.getItem(`${_id}-num`)}
+						{numComments.numComments}
 					</p>
 				</div>
 				<div

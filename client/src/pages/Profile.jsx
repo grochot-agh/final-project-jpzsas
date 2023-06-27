@@ -131,15 +131,17 @@ const Profile = () => {
 	};
 
 	return (
-		<div className="home-gradient md:h-[77.6vh] h-full w-full flex md:flex-row flex-col">
+		<div className="home-gradient sl:h-[100vh] h-full w-full flex sl:flex-row flex-col">
 			{openComment && <CommentsSection height="profile" postId={postId} />}
-			<div className="md:block hidden h-full bg-[#825f5f] dark:bg-[#463232] w-[470px] border-r-4 border-solid border-[#af9595] dark:border-[#211717]">
+			<div className="sl:block hidden h-full bg-[#825f5f] dark:bg-[#463232] w-[470px] border-r-4 border-solid border-[#af9595] dark:border-[#211717]">
 				<h1 className="text-[30px] text-[#ECE0E0] dark:text-black text-justify profile-dashboard cream-glow dark:dark-shadow">
-					WELCOME BACK
+					WELCOME BACK &nbsp;
 					<span className="text-[#7B2789]">
+						{' '}
 						{window.localStorage.getItem('google') == 'true'
 							? window.localStorage.getItem('login')
-							: userData.login}
+							: userData.login}{' '}
+						{''}
 					</span>
 					!
 				</h1>
@@ -185,7 +187,7 @@ const Profile = () => {
 				</p>
 			</div>
 
-			<div className="w-full bg-[#855E5E] dark:bg-[#463232] h-[40%] md:hidden flex flex-col justify-around">
+			<div className="w-full bg-[#855E5E] dark:bg-[#463232] h-[40vh] sl:hidden flex flex-col justify-around">
 				<p
 					onClick={() => handleClick('login')}
 					className={`text-[#7B2789] profilesm-link hover:bg-[#ECE0E0] dark:hover:bg-[#313338] ${
@@ -228,7 +230,7 @@ const Profile = () => {
 				</p>
 			</div>
 
-			<div className="w-[1060px] h-full relative md:block hidden">
+			<div className="w-[1060px] h-full relative sl:block hidden">
 				{activeLogin && (
 					<ProfileForm
 						title="LOGIN CHANGE"
@@ -305,7 +307,7 @@ const Profile = () => {
 				)}
 			</div>
 
-			<div className="w-full h-[60%] md:hidden flex">
+			<div className="w-full h-full sl:hidden flex">
 				{activeLogin && (
 					<ProfileSmallForm
 						type="text"
@@ -365,7 +367,7 @@ const Profile = () => {
 				)}
 
 				{activeCollection && (
-					<div className="flex flex-col items-center justify-center w-full">
+					<div className="flex flex-col items-center justify-center w-full h-[120vh]">
 						{loading ? (
 							<Loading />
 						) : (

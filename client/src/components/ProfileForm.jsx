@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FiEye } from 'react-icons/fi';
 
 const ProfileForm = ({
 	title,
@@ -20,6 +21,9 @@ const ProfileForm = ({
 	const [password, setPassword] = useState('');
 	const [currPassword, setCurrPassword] = useState('');
 	const [sndPassword, setSndPassword] = useState('');
+	const [showPassword, setShowPassword] = useState(false);
+	const [showSndPassword, setShowSndPassword] = useState(false);
+	const [showThirdPassword, setShowThirdPassword] = useState(false);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -56,7 +60,7 @@ const ProfileForm = ({
 				navigate('/login');
 				window.location.reload();
 			} else {
-				alert("Couldn't update account, try again");
+				alert(`Couldn't update account, try again: ${data.message}`);
 			}
 		} catch (err) {
 			console.log(err);
@@ -75,30 +79,45 @@ const ProfileForm = ({
 				>
 					{firstText}
 				</label>
-				<input
-					onChange={
-						type === 'email'
-							? (e) => setEmail(e.target.value)
-							: type === 'password'
-							? (e) => setPassword(e.target.value)
-							: (e) => setLogin(e.target.value)
-					}
-					className="profile-input"
-					type={`${type}`}
-					id={`${type}`}
-				/>
+				<div className="flex flex-row items-center text-center">
+					<input
+						onChange={
+							type === 'email'
+								? (e) => setEmail(e.target.value)
+								: type === 'password'
+								? (e) => setPassword(e.target.value)
+								: (e) => setLogin(e.target.value)
+						}
+						className="profile-input mr-4"
+						type={type === 'password' && showPassword ? 'text' : `${type}`}
+						id={`${type}`}
+					/>
+					{type === 'password' && (
+						<FiEye
+							onClick={() => setShowPassword(!showPassword)}
+							className="w-[25px] h-[25px] mb-3 cursor-pointer text-[#ECE0E0] dark:text-[#313338]"
+						/>
+					)}
+				</div>
+
 				<label
 					htmlFor={`${type}`}
 					className={`text-[25px] text-[${textColor2}] mb-3`}
 				>
 					{secondText}
 				</label>
-				<input
-					onChange={(e) => setCurrPassword(e.target.value)}
-					className="profile-input"
-					type="password"
-					id="password"
-				/>
+				<div className="flex flex-row items-center text-center">
+					<input
+						onChange={(e) => setCurrPassword(e.target.value)}
+						className="profile-input mr-4"
+						type={showSndPassword ? 'text' : 'password'}
+						id="password"
+					/>
+					<FiEye
+						onClick={() => setShowSndPassword(!showSndPassword)}
+						className="w-[25px] h-[25px] mb-3 cursor-pointer text-[#ECE0E0] dark:text-[#313338]"
+					/>
+				</div>
 
 				{threeInputs && (
 					<>
@@ -108,12 +127,18 @@ const ProfileForm = ({
 						>
 							{thirdText}
 						</label>
-						<input
-							onChange={(e) => setSndPassword(e.target.value)}
-							className="profile-input"
-							type="password"
-							id="password"
-						/>
+						<div className="flex flex-row items-center text-center">
+							<input
+								onChange={(e) => setSndPassword(e.target.value)}
+								className="profile-input mr-4"
+								type={showThirdPassword ? 'text' : 'password'}
+								id="password"
+							/>
+							<FiEye
+								onClick={() => setShowThirdPassword(!showThirdPassword)}
+								className="w-[25px] h-[25px] mb-3 cursor-pointer text-[#ECE0E0] dark:text-[#313338]"
+							/>
+						</div>
 					</>
 				)}
 

@@ -83,7 +83,9 @@ router.route('/comment/:postId').get(async (req, res) => {
 				.status(404)
 				.json({ success: false, message: 'No comments found' });
 		}
-		res.status(200).json({ success: true, data: comments });
+		res
+			.status(200)
+			.json({ success: true, data: comments, numComms: comments.length });
 	} catch (err) {
 		res.status(500).json({ success: false, message: err });
 	}

@@ -5,7 +5,7 @@ const Hamburger = ({ onClick }) => {
 		<>
 			<div
 				onClick={onClick}
-				className="md:hidden mr-4  flex flex-col items-center justify-center cursor-pointer"
+				className="sl:hidden mr-4  flex flex-col items-center justify-center cursor-pointer"
 			>
 				<div className="w-[45px] h-[6px] rounded-[5px] bg-[#855E5E] mb-1.5" />
 				<div className="w-[45px] h-[6px] rounded-[5px] bg-[#855E5E] mb-1.5" />

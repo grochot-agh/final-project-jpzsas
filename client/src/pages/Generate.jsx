@@ -93,12 +93,12 @@ const Generate = () => {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className="home-gradient md:h-[77.5vh] h-[80.1vh] flex items-center z-0 flex-col"
+			className="home-gradient h-[100vh] flex items-center z-0 flex-col"
 		>
 			<div className="flex flex-col w-full px-5">
 				<label
 					htmlFor="prompt"
-					className="text-[30px] text-[#855E5E] md:self-auto self-center"
+					className="text-[30px] text-[#855E5E] sl:self-auto self-center"
 				>
 					Enter a detailed prompt
 				</label>
@@ -108,10 +108,10 @@ const Generate = () => {
 					id="prompt"
 					value={form.prompt}
 					onChange={handleChange}
-					className="md:w-[1500px] md:h-[60px] w-[450px] bg-[#ECE0E0] dark:bg-[#313338] rounded-[15px] outline-none border-none text-[15px] font-['Baumans'] p-2 self-center"
+					className="sl:w-[1500px] sl:h-[60px] w-[450px] bg-[#ECE0E0] dark:bg-[#313338] rounded-[15px] outline-none border-none text-[15px] font-['Baumans'] p-2 self-center"
 				/>
 			</div>
-			<div className="md:flex hidden flex-row justify-around w-full overflow-hidden h-full px-40 py-5">
+			<div className="sl:flex hidden flex-row justify-around w-full overflow-hidden h-full px-40 py-5">
 				<div className="w-[384px] h-[384px] bg-[#ECE0E0] dark:bg-[#313338] self-end rounded-[10px] flex justify-center items-center">
 					{form.image ? (
 						<img
@@ -166,7 +166,7 @@ const Generate = () => {
 				</div>
 			</div>
 
-			<div className="md:hidden flex flex-col items-center justify-around h-full">
+			<div className="sl:hidden flex flex-col items-center justify-around h-full">
 				<p className="text-[20px] text-[#7B2789]">
 					You don’t have any idea? Try this:
 				</p>
