@@ -58,7 +58,7 @@ const Navbar = () => {
 				<Link
 					onClick={() => handleClick('generate')}
 					to="/generate"
-					className={`text-[#7B2789] nav-links sl:w-[300px] w-[100px] dark:hover:bg-[#211717] ${
+					className={`text-[#7B2789] nav-links sl:w-[300px] w-[100px] hover:bg-[#855E5E] dark:hover:bg-[#211717] ${
 						activeGenerate ? 'bg-[#855E5E] dark:bg-[#211717]' : ''
 					}`}
 				>
@@ -92,13 +92,13 @@ const Navbar = () => {
 					<div className="group-hover:flex hidden w-[250px] h-[150px] profile-gradient dark:profile-dark-gradient absolute top-[76px] z-10 flex-col justify-around items-start">
 						<Link
 							to="/login"
-							className="text-[#ECE0E0] dark:text-[#4c4f55] text-[25px] border-b-4 border-t-4 border-solid border-[#af9595] dark:border-[#432a2a] w-full  cursor-pointer"
+							className="text-[#ECE0E0] dark:text-[#4c4f55] hover:bg-[#855E5E] dark:hover:bg-[#211717] text-[25px] border-b-4 border-t-4 border-solid border-[#af9595] dark:border-[#432a2a] w-full  cursor-pointer"
 						>
 							LOG IN
 						</Link>
 						<Link
 							to="/register"
-							className="text-[#7B2789] text-[25px] border-b-4 border-solid border-[#af9595] dark:border-[#432a2a] w-full cursor-pointer"
+							className="text-[#7B2789] text-[25px] border-b-4 border-solid hover:bg-[#ac8686] dark:hover:bg-[#211717] border-[#af9595] dark:border-[#432a2a] w-full cursor-pointer"
 						>
 							REGISTER
 						</Link>
@@ -108,7 +108,7 @@ const Navbar = () => {
 									? gglLogout
 									: logOut
 							}
-							className="text-[#AD2121] text-[25px] w-full cursor-pointer"
+							className="text-[#AD2121] hover:bg-[#caa7a7] dark:hover:bg-[#211717] text-[25px] w-full cursor-pointer"
 						>
 							LOG OUT
 						</p>

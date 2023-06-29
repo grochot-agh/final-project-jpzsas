@@ -107,4 +107,21 @@
 	.comments-dark-gradient {
 		background: linear-gradient(180deg, #432a2a 0%, #211717 100%);
 	}
+
+	.add-comment-gradient {
+		background: rgb(133, 94, 94);
+		background: linear-gradient(
+			180deg,
+			rgba(133, 94, 94, 1) 35%,
+			rgba(123, 39, 137, 1) 100%
+		);
+	}
+	.add-comment-dark-gradient {
+		background: rgb(41, 24, 24);
+		background: linear-gradient(
+			180deg,
+			rgba(41, 24, 24, 1) 40%,
+			rgba(123, 39, 137, 1) 100%
+		);
+	}
 }

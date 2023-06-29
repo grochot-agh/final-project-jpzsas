@@ -103,7 +103,7 @@ const CommentsSection = ({ height, postId }) => {
 			</div>
 			<form
 				onSubmit={handleSubmit}
-				className="absolute bottom-7 h-[150px] w-full bg-[#855E5E] dark:bg-[#291818]"
+				className="absolute bottom-7 h-[150px] w-full add-comment-gradient dark:add-comment-dark-gradient"
 			>
 				<textarea
 					onChange={(e) => setComment(e.target.value)}

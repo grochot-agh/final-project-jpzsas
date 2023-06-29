@@ -7,8 +7,6 @@ const SearchBar = ({ allPosts, setSearchResults }) => {
 	const handleSearch = (e) => {
 		clearTimeout(searchTimeout);
 		setSearchText(e.target.value);
-		console.log(searchText);
-
 		setSearchTimeout(
 			setTimeout(() => {
 				const searchResult = allPosts.filter(
