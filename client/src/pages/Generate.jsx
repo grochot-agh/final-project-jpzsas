@@ -27,6 +27,10 @@ const Generate = () => {
 	};
 
 	const generateImg = async () => {
+		if (window.localStorage.getItem('loggedIn') != 'true') {
+			alert('Please log in to generate an image');
+			return;
+		}
 		if (form.prompt) {
 			try {
 				setGenerating(true);
