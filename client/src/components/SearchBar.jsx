@@ -6,7 +6,7 @@ const SearchBar = ({ allPosts, setSearchResults }) => {
 
 	const handleSearch = (e) => {
 		clearTimeout(searchTimeout);
-		setSearchText(e.target.value);
+		setSearchText(e.target.value.trim());
 		setSearchTimeout(
 			setTimeout(() => {
 				const searchResult = allPosts.filter(
@@ -17,6 +17,9 @@ const SearchBar = ({ allPosts, setSearchResults }) => {
 				if (searchResult.length === 0) {
 					alert('No posts with that tag found');
 					setSearchText('');
+					return;
+				} else if (e.target.value === '') {
+					setSearchResults(allPosts);
 					return;
 				}
 				setSearchResults(searchResult);
