@@ -58,7 +58,7 @@ const Login = () => {
 	};
 
 	return (
-		<div className="home-gradient h-[100vh] flex items-center justify-center flex-col py-5">
+		<div className="home-gradient h-[100vh] flex items-center flex-col py-20">
 			<h1 className="text-[25px] text-[#ECE0E0] dark:text-[#313338]">
 				LOG IN TO YOUR ACCOUNT
 			</h1>

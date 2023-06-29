@@ -131,9 +131,9 @@ const Profile = () => {
 	};
 
 	return (
-		<div className="home-gradient sl:h-[100vh] h-full w-full flex sl:flex-row flex-col">
+		<div className="home-gradient w-full flex sl:flex-row flex-col">
 			{openComment && <CommentsSection height="profile" postId={postId} />}
-			<div className="sl:block hidden h-full bg-[#825f5f] dark:bg-[#463232] w-[470px] border-r-4 border-solid border-[#af9595] dark:border-[#211717]">
+			<div className="sl:block hidden bg-[#825f5f] dark:bg-[#463232] w-[470px] border-r-4 border-solid border-[#af9595] dark:border-[#211717]">
 				<h1 className="text-[30px] text-[#ECE0E0] dark:text-black text-justify profile-dashboard cream-glow dark:dark-shadow">
 					WELCOME BACK &nbsp;
 					<span className="text-[#7B2789]">
@@ -293,7 +293,7 @@ const Profile = () => {
 				)}
 
 				{activeCollection && (
-					<div className="h-full flex justify-around pb-5">
+					<div className="h-full flex justify-around flex-wrap">
 						{loading ? (
 							<Loading />
 						) : (
@@ -367,7 +367,7 @@ const Profile = () => {
 				)}
 
 				{activeCollection && (
-					<div className="flex flex-col items-center justify-center w-full h-[120vh]">
+					<div className="flex flex-col items-center justify-center w-full">
 						{loading ? (
 							<Loading />
 						) : (
