@@ -108,12 +108,12 @@ const CommentsSection = ({ height, postId }) => {
 				<textarea
 					onChange={(e) => setComment(e.target.value)}
 					value={comment}
-					className="border-none outline-none resize-none w-full h-[120px] font-['Baumans'] px-4 py-4 bg-transparent text-[#ECE0E0] dark:text-[#855E5E] placeholder:text-[#ECE0E0] dark:placeholder:text-[#855E5E]"
+					className="border-none outline-none resize-none w-full h-[120px] font-['Baumans'] px-4 py-4 bg-transparent text-[#ECE0E0] dark:text-black placeholder:text-[#ECE0E0] dark:placeholder:text-black"
 					placeholder="Add a comment"
 				/>
 				<button
 					type="submit"
-					className="w-full h-[50px] bg-[#7b2789] text-lg text-[#ECE0E0] dark:text-[#855E5E] border-b-4 border-[#af9595] dark:border-[#211717]"
+					className="w-full h-[50px] bg-[#7b2789] text-lg text-[#ECE0E0] dark:text-black border-b-4 border-[#af9595] dark:border-[#211717]"
 				>
 					Send comment
 				</button>

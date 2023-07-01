@@ -68,7 +68,7 @@ const ProfileForm = ({
 	};
 
 	return (
-		<div className="h-full flex flex-col items-center py-32">
+		<div className="h-[100vh] flex flex-col items-center py-32">
 			<h1 className="text-[40px] text-[#ECE0E0] dark:text-[#313338] self-start ml-[26%]">
 				{title}
 			</h1>

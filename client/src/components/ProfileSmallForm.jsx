@@ -69,7 +69,7 @@ const ProfileSmallForm = ({
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className="flex flex-col h-full w-full px-10 py-10"
+			className="flex flex-col w-full h-[100vh] px-10 py-10"
 		>
 			<label className={`text-[25px] text-[${textColor}]`} htmlFor={`${type}`}>
 				{firstText}
