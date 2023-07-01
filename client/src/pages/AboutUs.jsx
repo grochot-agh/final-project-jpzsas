@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutUs = () => {
 	return (
-		<div className="w-full sl:h-[100vh] h-full home-gradient flex flex-col">
+		<div className="w-full md:h-[100vh] home-gradient flex flex-col">
 			<h1 className="self-center sl:text-[40px] text-[30px] text-[#ECE0E0] dark:text-[#313338] dark-shadow">
 				About Us
 			</h1>
@@ -48,7 +48,7 @@ const AboutUs = () => {
 				<h2 className="sl:text-[20px] text-[22px] text-[#7B2789] dark-shadow">
 					Join ArtIfy
 				</h2>
-				<p className="text-[18px] font-['Baumans'] text-justify dark:text-[#4c4f55]">
+				<p className="text-[18px] mb-10 font-['Baumans'] text-justify dark:text-[#4c4f55]">
 					We invite you to join our vibrant community of artists, creators, and
 					art lovers. Experience the exhilarating fusion of AI and art, where
 					technology becomes a catalyst for unleashing your creative potential.

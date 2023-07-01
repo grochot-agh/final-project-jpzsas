@@ -131,7 +131,7 @@ const Profile = () => {
 	};
 
 	return (
-		<div className="home-gradient w-full flex sl:flex-row flex-col">
+		<div className="home-gradient w-full sl:h-[100vh] flex sl:flex-row flex-col">
 			{openComment && <CommentsSection height="profile" postId={postId} />}
 			<div className="sl:block hidden bg-[#825f5f] dark:bg-[#463232] w-[470px] border-r-4 border-solid border-[#af9595] dark:border-[#211717]">
 				<h1 className="text-[30px] text-[#ECE0E0] dark:text-black text-justify profile-dashboard cream-glow dark:dark-shadow">
@@ -187,7 +187,7 @@ const Profile = () => {
 				</p>
 			</div>
 
-			<div className="w-full bg-[#855E5E] dark:bg-[#463232] h-[40vh] sl:hidden flex flex-col justify-around">
+			<div className="w-full bg-[#855E5E] dark:bg-[#463232] h-[27.5vh] sl:hidden flex flex-col justify-around">
 				<p
 					onClick={() => handleClick('login')}
 					className={`text-[#7B2789] profilesm-link hover:bg-[#ECE0E0] dark:hover:bg-[#313338] ${
@@ -230,7 +230,7 @@ const Profile = () => {
 				</p>
 			</div>
 
-			<div className="w-[1060px] h-full relative sl:block hidden">
+			<div className="w-[1060px] h-[100vh] flex justify-center items-center relative sl:block hidden">
 				{activeLogin && (
 					<ProfileForm
 						title="LOGIN CHANGE"
@@ -278,7 +278,7 @@ const Profile = () => {
 				)}
 
 				{activeDelete && (
-					<div className="h-full flex flex-col items-center justify-center">
+					<div className=" flex flex-col items-center justify-center py-64">
 						<h1 className="text-[50px] text-[#ECE0E0] dark:text-[#313338]">
 							Do you really want to leave us?
 						</h1>
@@ -293,7 +293,7 @@ const Profile = () => {
 				)}
 
 				{activeCollection && (
-					<div className="h-full flex justify-around flex-wrap">
+					<div className=" flex justify-around flex-wrap">
 						{loading ? (
 							<Loading />
 						) : (
@@ -352,7 +352,7 @@ const Profile = () => {
 				)}
 
 				{activeDelete && (
-					<div className="flex flex-col h-[44.2vh] w-ful items-center justify-center text-center px-3">
+					<div className="flex flex-col h-[73.5vh] w-full items-center justify-center text-center px-3">
 						<h1 className="text-[35px] text-[#ECE0E0] dark:text-[#313338]">
 							Do you really want to leave us?
 						</h1>
