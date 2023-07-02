@@ -32,6 +32,7 @@ const Profile = () => {
 		}
 	};
 
+	//get user's posts
 	const fetchUserPosts = async (creator) => {
 		setLoading(true);
 		try {
@@ -45,9 +46,9 @@ const Profile = () => {
 				}
 			);
 
-			if (response.status === 200) {
-				const result = await response.json();
-				setUserPosts(result.data.reverse());
+			if (response.status === 200) { //success
+				const result = await response.json(); //make result a json object
+				setUserPosts(result.data.reverse()); 
 				console.log(userPosts);
 			}
 		} catch (err) {
@@ -87,8 +88,9 @@ const Profile = () => {
 		}
 	}, []);
 
+	//delete user account
 	const deleteAccount = async (id) => {
-		if (window.localStorage.getItem('google') == 'true') {
+		if (window.localStorage.getItem('google') == 'true') { //in case user registered using google account
 			alert('You cannot delete your google account');
 			return;
 		}
@@ -108,9 +110,9 @@ const Profile = () => {
 				});
 				const data = await response.json();
 				console.log(data);
-				if (response.status === 200) {
+				if (response.status === 200) { //success in deleting account
 					alert('Account deleted successfully');
-					window.localStorage.clear();
+					window.localStorage.clear(); //clear local storage
 					navigate('/');
 					window.location.reload();
 				} else {
@@ -122,6 +124,7 @@ const Profile = () => {
 		}
 	};
 
+	//handle click on profile options
 	const handleClick = (option) => {
 		setActiveLogin(option === 'login');
 		setActivePassword(option === 'password');
@@ -130,6 +133,7 @@ const Profile = () => {
 		setActiveCollection(option === 'collection');
 	};
 
+	//return profile page
 	return (
 		<div className="home-gradient w-full sl:h-[100vh] flex sl:flex-row flex-col">
 			{openComment && <CommentsSection height="profile" postId={postId} />}

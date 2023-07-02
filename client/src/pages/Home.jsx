@@ -32,6 +32,7 @@ const Home = () => {
 		fetchPosts();
 	}, []);
 
+	//return home page
 	return (
 		<div className="home-gradient dark:home-dark-gradient h-[100vh] flex items-center flex-col py-5 overflow-x-hidden">
 			<SearchBar allPosts={allPosts} setSearchResults={setSearchResults} />

@@ -13,8 +13,10 @@ import {
 import { Navbar, Footer } from './components';
 
 const App = () => {
+	//Check if user is logged in and save it in isUserLoggedIn
 	const isUserLoggedIn = window.localStorage.getItem('loggedIn');
 	return (
+		//depending if the user is logged in, show appropiate options in the navbar
 		<BrowserRouter>
 			<Navbar />
 			<Routes>

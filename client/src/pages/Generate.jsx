@@ -21,13 +21,14 @@ const Generate = () => {
 		setForm({ ...form, [e.target.name]: e.target.value });
 	};
 
+	//generating random image
 	const handleRandom = () => {
 		const rndPrompt = getRandomPrompt(form.prompt);
 		setForm({ ...form, prompt: rndPrompt });
 	};
 
 	const generateImg = async () => {
-		if (window.localStorage.getItem('loggedIn') != 'true') {
+		if (window.localStorage.getItem('loggedIn') != 'true') { //block generating if not logged in
 			alert('Please log in to generate an image');
 			return;
 		}
@@ -58,7 +59,7 @@ const Generate = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (form.prompt && form.image && form.creator && form.hashtag) {
+		if (form.prompt && form.image && form.creator && form.hashtag) { 
 			setLoading(true);
 			try {
 				const response = await fetch(`http://localhost:8000/api/v1/post`, {

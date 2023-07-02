@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+//saving the post to the database
 const Post = new mongoose.Schema({
 	creator: {
 		type: String,
