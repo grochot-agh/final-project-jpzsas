@@ -12,17 +12,17 @@ const Register = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (email && login && password && sndPassword) {
+		if (email && login && password && sndPassword) { //checking if everything has a value, if yes then send a request to the server using the POST method
 			try {
 				const response = await fetch('http://localhost:8000/user/register', {
 					method: 'POST',
 					crossDomain: true,
-					headers: {
+					headers: { //seting headers
 						'Content-Type': 'application/json',
 						Accept: 'application/json',
 						'Access-Control-Allow-Origin': '*',
 					},
-					body: JSON.stringify({
+					body: JSON.stringify({ //convert to JSON notation
 						email,
 						login,
 						password,
@@ -31,18 +31,19 @@ const Register = () => {
 				});
 				const data = await response.json();
 				console.log(data);
-				if (response.status === 201) {
+				if (response.status === 201) { //success
 					alert('Registration successful!');
-					navigate('/login');
-				} else {
+					navigate('/login'); //go to login page
+				} else { //send an alert if not successful
 					alert(data.message);
 				}
-			} catch (err) {
+			} catch (err) { //print error message on console
 				console.log(err);
 			}
 		}
 	};
 
+	//return the Register page
 	return (
 		<div className="home-gradient h-[100vh] flex items-center flex-col py-10">
 			<h1 className="text-[25px] text-[#ECE0E0] dark:text-[#313338] mb-2">

@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+//saving the user data to the database
 const User = new mongoose.Schema({
 	email: { type: String, required: true, unique: true },
 	login: { type: String, required: true, unique: true },

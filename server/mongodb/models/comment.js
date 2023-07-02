@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+//saving the commments to the database
 const Comment = new mongoose.Schema({
 	postId: {
 		type: mongoose.Schema.Types.ObjectId,

@@ -23,7 +23,7 @@ const GoogleLogin = () => {
 						},
 					}
 				)
-				.then((res) => {
+				.then((res) => { //save user info in local storage
 					window.localStorage.setItem('loggedIn', true);
 					window.localStorage.setItem('login', res.data.name);
 					window.localStorage.setItem('google', true);

@@ -8,12 +8,14 @@ dotenv.config();
 
 const router = express.Router();
 
+//configurating Cloudinary
 cloudinary.config({
 	cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
 	api_key: process.env.CLOUDINARY_API_KEY,
 	api_secret: process.env.CLOUDINARY_SECRET,
 });
 
+//return all posts
 router.route('/').get(async (req, res) => {
 	try {
 		const posts = await Post.find({});
@@ -26,6 +28,7 @@ router.route('/').get(async (req, res) => {
 	}
 });
 
+//return all posts by creator
 router.route('/:creator').get(async (req, res) => {
 	const creator = req.params.creator;
 	try {
@@ -42,6 +45,7 @@ router.route('/:creator').get(async (req, res) => {
 	}
 });
 
+//routing for creating a new post
 router.route('/').post(async (req, res) => {
 	try {
 		const { creator, prompt, image, hashtag } = req.body;
@@ -59,6 +63,7 @@ router.route('/').post(async (req, res) => {
 	}
 });
 
+//routing for creating a new comment
 router.route('/comment').post(async (req, res) => {
 	try {
 		const { postId, user, comment } = req.body;
@@ -74,6 +79,7 @@ router.route('/comment').post(async (req, res) => {
 	}
 });
 
+//return comments by postId
 router.route('/comment/:postId').get(async (req, res) => {
 	const postId = req.params.postId;
 	try {
@@ -91,6 +97,7 @@ router.route('/comment/:postId').get(async (req, res) => {
 	}
 });
 
+//liking the post with checking if the post exists or is already liked
 router.route('/like/:postId').post(async (req, res) => {
 	const postId = req.params.postId;
 	const { user } = req.body;
@@ -113,6 +120,7 @@ router.route('/like/:postId').post(async (req, res) => {
 	}
 });
 
+//unliking the post with checking if unliked already
 router.route('/unlike/:postId').post(async (req, res) => {
 	const postId = req.params.postId;
 	const { user } = req.body;
@@ -132,6 +140,7 @@ router.route('/unlike/:postId').post(async (req, res) => {
 	}
 });
 
+//return the info about how many users liked the post and list of them
 router.route('/likes/:postId').get(async (req, res) => {
 	const postId = req.params.postId;
 	try {

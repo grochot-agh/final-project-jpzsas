@@ -7,6 +7,8 @@ import User from '../mongodb/models/user.js';
 dotenv.config();
 const router = express.Router();
 
+/*changing the user login with checking if the new login is taken;
+ requires the user's password to be changed*/
 const changeLogin = async (user, login, currPassword, res) => {
 	try {
 		const passwordMatch = await bcrypt.compare(currPassword, user.password);
@@ -35,6 +37,8 @@ const changeLogin = async (user, login, currPassword, res) => {
 	}
 };
 
+/*changing the user's email address with checking if email is not used by another user;
+requires a password to change*/
 const changeEmail = async (user, email, currPassword, res) => {
 	try {
 		const passwordMatch = await bcrypt.compare(currPassword, user.password);
@@ -63,6 +67,8 @@ const changeEmail = async (user, email, currPassword, res) => {
 	}
 };
 
+/*changing password, it checks current pasword hash if it matches hash in database
+ new password requires 6 characters, 1 letter, 1 number, 1 special character*/
 const changePassword = async (
 	user,
 	currPassword,
@@ -94,7 +100,7 @@ const changePassword = async (
 				});
 			} else {
 				const encPassword = await bcrypt.hash(password, 10);
-				await User.findOneAndUpdate(
+				await User.findOneAndUpdate( //updating user password in database
 					{ _id: user._id },
 					{ $set: { password: encPassword } }
 				);
@@ -110,7 +116,7 @@ const changePassword = async (
 		res.status(500).json({
 			success: false,
 			message: 'An error occurred while changing the password.',
-			error: err.message, // Include the error message in the response
+			error: err.message,
 		});
 	}
 };
@@ -119,6 +125,10 @@ router.route('/').get((req, res) => {
 	res.send('User route is running');
 });
 
+/* register routes; checking if repeated password matches the previous one;
+check if password is 6 characters long; if contains 1 letter, 1 number and 1 special character;
+check if there is user with the same login or email address
+*/
 router.route('/register').post(async (req, res) => {
 	try {
 		const { email, login, password, sndPassword } = req.body;
@@ -183,6 +193,7 @@ router.route('/register').post(async (req, res) => {
 	}
 });
 
+/*routing for login; checking if credentials are matching */
 router.route('/login').post(async (req, res) => {
 	try {
 		const { login, email, password } = req.body;
@@ -250,6 +261,7 @@ router.route('/profile').post(async (req, res) => {
 	}
 });
 
+//deleting users from database
 router.route('/delete-acc').post(async (req, res) => {
 	const { userID } = req.body;
 	try {
@@ -260,6 +272,7 @@ router.route('/delete-acc').post(async (req, res) => {
 	}
 });
 
+/*Changing login or email adress or password and handling it*/
 router.route('/update-account').post(async (req, res) => {
 	const { login, email, password, currPassword, sndPassword, id } = req.body;
 	const user = await User.findOne({ _id: id });

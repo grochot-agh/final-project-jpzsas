@@ -9,6 +9,7 @@ const CommentsSection = ({ height, postId }) => {
 		const commentDate = new Date(comslate);
 		const difference = Math.floor((currentDate - commentDate) / 1000);
 
+		//calculate time from posting date
 		if (difference < 60) {
 			return `${difference} seconds ago`;
 		} else if (difference < 3600) {
@@ -68,7 +69,7 @@ const CommentsSection = ({ height, postId }) => {
 			const result = await response.json();
 			if (response.status === 200) {
 				if (result.data.length > 0) {
-					setAllComments(result.data.reverse());
+					setAllComments(result.data.reverse()); //displaying comments from the newest
 					window.localStorage.setItem(`${postId}-num`, `${result.data.length}`);
 				}
 			}
@@ -81,6 +82,7 @@ const CommentsSection = ({ height, postId }) => {
 		fetchComments(postId);
 	});
 
+	//return the comments' section
 	return (
 		<div
 			className={`flex flex-col absolute sl:top-[80px] top-[60px] sl:left-[30px] left-[15px] comments-gradient dark:comments-dark-gradient w-[450px] h-[85%] z-10 border-l-4 border-r-4 border-[#af9595] dark:border-[#211717]`}

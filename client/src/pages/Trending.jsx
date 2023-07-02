@@ -22,23 +22,23 @@ const Trending = () => {
 	};
 
 	const fetchPosts = async () => {
-		setLoading(true);
+		setLoading(true); // set loading as true
 		try {
-			const response = await fetch('http://localhost:8000/api/v1/post', {
+			const response = await fetch('http://localhost:8000/api/v1/post', { //use fetch to send a request to the server
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
 				},
 			});
 
-			if (response.status === 200) {
-				const result = await response.json();
-				setAllPosts(result.data.reverse());
+			if (response.status === 200) { // success
+				const result = await response.json(); //make result a json object
+				setAllPosts(result.data.reverse()); //reversing posts in array
 			}
 		} catch (err) {
-			console.log(err);
+			console.log(err); //display error on console
 		} finally {
-			setLoading(false);
+			setLoading(false); //set loading as false, no matter the result
 		}
 	};
 
@@ -46,6 +46,8 @@ const Trending = () => {
 		fetchPosts();
 	}, []);
 
+
+	//return trending page
 	return (
 		<div className="home-gradient h-full flex items-center flex-col pb-12">
 			{openComment && <CommentsSection height="trending" postId={postId} />}
