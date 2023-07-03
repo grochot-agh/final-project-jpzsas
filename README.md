@@ -2,8 +2,8 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=11228627&assignment_repo_type=AssignmentRepo)
 
 <img src='client/src/assets/logo.png?' height='250'>  
-<font><span style="color:red"><font size=20>A</span>RT<span style="color:purple">I</span>FY</font>
 
+# **ARTFIY**
 
 ## SOCIAL MEDIA PLATFORM CENTERED AROUND AI IMAGE GENERATION
 
@@ -93,7 +93,8 @@ tailwindcss's tutorial for dark mode creation
 <br><br><br>
 
 <img src='client/src/assets/logo.png?' height='250'>  
-<span style="color:red"><font size=20>A</span>RT<span style="color:purple">I</span>FY</font>
+
+# **ARTFIY**
 
 ## PLATFORMA SPOŁECZNOŚCIOWA UMOŻLIWIAJĄCA GENEROWANIE GRAFIK ZA POMOCĄ AI
 
